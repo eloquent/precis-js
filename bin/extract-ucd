@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
 set -e
 
-if [ ! -f resources/ucd/ucd.zip ]; then bin/fetch-resources; fi
-unzip -o resources/ucd/ucd.zip -d resources/ucd
+if [ ! -f build/ucd/ucd.zip ]; then bin/fetch-ucd; fi
+unzip -o build/ucd/ucd.zip -d build/ucd

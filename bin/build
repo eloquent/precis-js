@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+set -e
+
+if [ ! -f build/precis.json ]; then bin/build-precis-raw; fi
+bin/build-precis
