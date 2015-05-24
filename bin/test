@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+node_modules/.bin/mocha "${1-test/suite}"

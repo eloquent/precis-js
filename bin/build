@@ -2,4 +2,5 @@
 set -e
 
 if [ ! -f build/precis.json ]; then bin/build-precis-raw; fi
-bin/build-precis
+node_modules/.bin/coffee bin/build-precis.coffee
+node_modules/.bin/coffee bin/generate-classes.coffee
