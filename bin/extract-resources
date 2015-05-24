@@ -1,6 +1,0 @@
-#!/usr/bin/env bash
-set -e
-
-if [ ! -f resources/ucd/ucd.zip ]; then bin/fetch-resources; fi
-unzip resources/ucd/ucd.zip -d resources/ucd
-unzip resources/precismaker/precismaker.zip -d resources/precismaker

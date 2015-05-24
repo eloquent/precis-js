@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+set -e
+
+if [ ! -f resources/ucd/ucd.zip ]; then bin/fetch-resources; fi
+unzip -o resources/ucd/ucd.zip -d resources/ucd

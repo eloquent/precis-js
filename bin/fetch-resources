@@ -1,8 +1,0 @@
-#!/usr/bin/env bash
-set -e
-
-mkdir -p resources/ucd
-curl -L http://www.unicode.org/Public/UCD/latest/ucd/UCD.zip -o resources/ucd/ucd.zip
-
-mkdir -p resources/precismaker
-curl -L https://github.com/stpeter/precismaker/archive/master.zip -o resources/precismaker/precismaker.zip
