@@ -1,20 +1,18 @@
+fs = require 'fs'
+UnicodeTrie = require 'unicode-trie'
+
 module.exports = class CodepointCategorizer
 
-    constructor: (ranges = require './ranges') ->
-        @_index = []
+    @UNASSIGNED: 0
+    @DISALLOWED: 1
+    @FREE_PVAL: 2
+    @PVALID: 3
+    @CONTEXTO: 4
+    @CONTEXTJ: 5
 
-        for category of ranges
-            codepoints = ranges[category]
-            i = 0
+    constructor: () ->
+        data = fs.readFileSync __dirname + '/../data/precis.trie'
+        @trie = new UnicodeTrie data
 
-            while i < codepoints.length
-                @_index.push [codepoints[i], codepoints[i + 1], category]
-
-                i += 2
-
-    codepointCategory: (codepoint) ->
-        for [start, end, category] in @_index
-            return category if codepoint >= start and codepoint <= end
-
-        return 'UNASSIGNED'
+    codepointCategory: (codepoint) -> @trie.get codepoint
 

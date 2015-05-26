@@ -1,27 +1,34 @@
 fs = require 'fs'
-data = JSON.parse fs.readFileSync 'build/precis.json'
+UnicodeTrieBuilder = require 'unicode-trie/builder'
 
-ranges = {}
+data = JSON.parse fs.readFileSync __dirname + '/../build/precis.json'
+
+categories =
+    UNASSIGNED: 0
+    DISALLOWED: 1
+    FREE_PVAL: 2
+    PVALID: 3
+    CONTEXTO: 4
+    CONTEXTJ: 5
+
+trie = new UnicodeTrieBuilder categories.UNASSIGNED
 rangeStart = 0
 previousCategory = null
 previousCodepoint = null
 
-addRange = (category, start, end) ->
+addRange = (start, end, category) ->
     return if category is 'UNASSIGNED'
 
-    unless ranges[category]?
-        ranges[category] = []
-
-    ranges[category].push parseInt(start), parseInt(end)
+    trie.setRange parseInt(start), parseInt(end), categories[category]
 
 for codepoint, category of data
     unless previousCategory is null or category is previousCategory
-        addRange previousCategory, rangeStart, previousCodepoint
+        addRange rangeStart, previousCodepoint, previousCategory
         rangeStart = codepoint
 
     previousCategory = category
     previousCodepoint = codepoint
 
-addRange previousCategory, rangeStart, previousCodepoint
+addRange rangeStart, previousCodepoint, previousCategory
 
-fs.writeFileSync 'build/precis-ranges.json', JSON.stringify ranges
+fs.writeFileSync __dirname + '/../data/precis.trie', trie.toBuffer()
