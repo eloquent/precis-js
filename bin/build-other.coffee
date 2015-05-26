@@ -38,6 +38,7 @@ bidiClasses =
     BN: 10
     NSM: 11
 
+widthMappings = []
 trie = new UnicodeTrieBuilder bidiClasses.OTHER
 rangeStart = 0
 previousClass = null
@@ -51,6 +52,10 @@ addRange = (start, end, bidiClass) ->
 for data in codepoints
     continue unless data?
 
+    if (data.eastAsianWidth is 'H' or data.eastAsianWidth is 'F') and
+        data.decomposition.length
+            widthMappings.push data.code, data.decomposition
+
     unless previousClass is null or data.bidiClass is previousClass
         addRange rangeStart, previousCodepoint, previousClass
         rangeStart = data.code
@@ -61,3 +66,4 @@ for data in codepoints
 addRange rangeStart, previousCodepoint, previousClass
 
 fs.writeFileSync __dirname + '/../data/bidi.trie', trie.toBuffer()
+fs.writeFileSync __dirname + '/../data/eaw.json', JSON.stringify widthMappings
