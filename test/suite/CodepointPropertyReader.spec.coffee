@@ -26,3 +26,19 @@ describe 'CodepointPropertyReader', ->
             assert.strictEqual @subject.bidiClass(0x0021), CodepointPropertyReader.BIDI.ON    # ON
             assert.strictEqual @subject.bidiClass(0x0023), CodepointPropertyReader.BIDI.ET    # ET
             assert.strictEqual @subject.bidiClass(0x002B), CodepointPropertyReader.BIDI.ES    # ES
+            assert.strictEqual @subject.bidiClass(0x002C), CodepointPropertyReader.BIDI.CS    # CS
+            assert.strictEqual @subject.bidiClass(0x0030), CodepointPropertyReader.BIDI.EN    # EN
+            assert.strictEqual @subject.bidiClass(0x0041), CodepointPropertyReader.BIDI.L     # L
+            assert.strictEqual @subject.bidiClass(0x0300), CodepointPropertyReader.BIDI.NSM   # NSM
+            assert.strictEqual @subject.bidiClass(0x05BE), CodepointPropertyReader.BIDI.R     # R
+            assert.strictEqual @subject.bidiClass(0x0600), CodepointPropertyReader.BIDI.AN    # AN
+            assert.strictEqual @subject.bidiClass(0x0608), CodepointPropertyReader.BIDI.AL    # AL
+            assert.strictEqual @subject.bidiClass(0x202A), CodepointPropertyReader.BIDI.OTHER # LRE
+            assert.strictEqual @subject.bidiClass(0x202B), CodepointPropertyReader.BIDI.OTHER # RLE
+            assert.strictEqual @subject.bidiClass(0x202C), CodepointPropertyReader.BIDI.OTHER # PDF
+            assert.strictEqual @subject.bidiClass(0x202D), CodepointPropertyReader.BIDI.OTHER # LRO
+            assert.strictEqual @subject.bidiClass(0x202E), CodepointPropertyReader.BIDI.OTHER # RLO
+            assert.strictEqual @subject.bidiClass(0x2066), CodepointPropertyReader.BIDI.OTHER # LRI
+            assert.strictEqual @subject.bidiClass(0x2067), CodepointPropertyReader.BIDI.OTHER # RLI
+            assert.strictEqual @subject.bidiClass(0x2068), CodepointPropertyReader.BIDI.OTHER # FSI
+            assert.strictEqual @subject.bidiClass(0x2069), CodepointPropertyReader.BIDI.OTHER # PDI

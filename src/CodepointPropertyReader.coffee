@@ -40,9 +40,10 @@ module.exports = class CodepointPropertyReader
     @PRECIS = precisCategories
     @BIDI = bidiClasses
 
-    constructor: ->
-        data = fs.readFileSync __dirname + '/../data/properties.trie'
-        @trie = new UnicodeTrie data
+    constructor: (@trie) ->
+        unless @trie?
+            data = fs.readFileSync __dirname + '/../data/properties.trie'
+            @trie = new UnicodeTrie data
 
     precisCategory: (codepoint) ->
         data = @trie.get codepoint
