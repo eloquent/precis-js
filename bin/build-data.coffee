@@ -1,3 +1,5 @@
+### !pragma coverage-skip-block ###
+
 fs = require 'fs'
 UnicodeTrieBuilder = require 'unicode-trie/builder'
 

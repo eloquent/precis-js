@@ -1,6 +1,4 @@
-fs = require 'fs'
-UnicodeTrie = require 'unicode-trie'
-
+### !pragma coverage-skip-next ###
 log2 = Math.log2 or (n) -> Math.log(n) / Math.LN2
 bits = (n) -> (log2(n) + 1) | 0
 
@@ -41,9 +39,6 @@ module.exports = class CodepointPropertyReader
     @BIDI = BIDI
 
     constructor: (@trie) ->
-        unless @trie?
-            data = fs.readFileSync __dirname + '/../data/properties.trie'
-            @trie = new UnicodeTrie data
 
     precisCategory: (codepoint) ->
         data = @trie.get codepoint

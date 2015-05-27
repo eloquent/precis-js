@@ -1,9 +1,16 @@
+fs = require 'fs'
+UnicodeTrie = require 'unicode-trie'
+
 CodepointPropertyReader = require '../../src/CodepointPropertyReader'
 
 describe 'CodepointPropertyReader', ->
 
+    before ->
+        data = fs.readFileSync __dirname + '/../../data/properties.trie'
+        @trie = new UnicodeTrie data
+
     beforeEach ->
-        @subject = new CodepointPropertyReader()
+        @subject = new CodepointPropertyReader @trie
 
     describe 'precisCategory()', ->
 

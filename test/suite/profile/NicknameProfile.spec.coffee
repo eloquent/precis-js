@@ -1,3 +1,5 @@
+fs = require 'fs'
+UnicodeTrie = require 'unicode-trie'
 {ucs2} = require 'punycode'
 
 CodepointPropertyReader = require '../../../src/CodepointPropertyReader'
@@ -7,10 +9,14 @@ Precis = require '../../../src/Precis'
 
 describe 'NicknameProfile', ->
 
+    before ->
+        data = fs.readFileSync __dirname + '/../../../data/properties.trie'
+        @trie = new UnicodeTrie data
+
     beforeEach ->
         @subject = new NicknameProfile()
 
-        @propertyReader = new CodepointPropertyReader()
+        @propertyReader = new CodepointPropertyReader @trie
 
     it 'has the correct properties', ->
         assert.strictEqual @subject.stringClass, Precis.STRING_CLASS.FREEFORM
