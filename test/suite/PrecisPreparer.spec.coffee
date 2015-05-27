@@ -19,15 +19,15 @@ describe 'PrecisPreparer', ->
     describe 'prepare()', ->
 
         it 'throws an error if the string class is not implemented', ->
-            assert.throws (=> @subject.prepare 111, ''), 'Not implemented.'
+            assert.throws (=> @subject.prepare stringClass: 111, ''), 'Not implemented.'
 
-        describe 'with the FreeformClass string class', ->
+        describe 'for FreeformClass string class profiles', ->
 
             beforeEach ->
                 @profile = stringClass: Precis.STRING_CLASS.FREEFORM
 
             it 'allows characters in the FreeformClass string class', ->
-                assert.deepEqual @subject.prepare(@profile, "\u0020\u0021"), [0x0020, 0x0021]
+                assert.deepEqual @subject.prepare(@profile, ' !'), [0x0020, 0x0021]
 
             it 'rejects characters outside the FreeformClass string class', ->
                 assert.throws (=> @subject.prepare @profile, "\u0000"), InvalidCodepointError
