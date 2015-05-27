@@ -1,12 +1,12 @@
 fs = require 'fs'
 UnicodeTrie = require 'unicode-trie'
 
-CodepointPropertyReader = require '../../src/CodepointPropertyReader'
+CodepointPropertyReader = require '../../../src/unicode/CodepointPropertyReader'
 
 describe 'CodepointPropertyReader', ->
 
     before ->
-        data = fs.readFileSync __dirname + '/../../data/properties.trie'
+        data = fs.readFileSync __dirname + '/../../../data/properties.trie'
         @trie = new UnicodeTrie data
 
     beforeEach ->

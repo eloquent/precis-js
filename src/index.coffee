@@ -1,23 +1,23 @@
-module.exports = class Precis
+module.exports =
 
-    @STRING_CLASS:
+    STRING_CLASS:
         IDENTIFIER: 1
         FREEFORM: 2
 
-    @WIDTH_MAPPING:
+    WIDTH_MAPPING:
         NONE: 0
 
-    @CASE_MAPPING:
+    CASE_MAPPING:
         NONE: 0
         LOWERCASE: 1
 
-    @NORMALIZATION:
+    NORMALIZATION:
         NONE: 0
         C: 1
         D: 2
         KC: 3
         KD: 4
 
-    @DIRECTIONALITY:
+    DIRECTIONALITY:
         NONE: 0
         BIDI: 1

@@ -1,5 +1,5 @@
 EmptyStringError = require '../error/EmptyStringError'
-Precis = require '../Precis'
+Precis = require '../index'
 
 module.exports = class NicknameProfile
 

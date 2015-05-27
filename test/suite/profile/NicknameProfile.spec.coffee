@@ -2,10 +2,10 @@ fs = require 'fs'
 UnicodeTrie = require 'unicode-trie'
 {ucs2} = require 'punycode'
 
-CodepointPropertyReader = require '../../../src/CodepointPropertyReader'
+CodepointPropertyReader = require '../../../src/unicode/CodepointPropertyReader'
 EmptyStringError = require '../../../src/error/EmptyStringError'
 NicknameProfile = require '../../../src/profile/NicknameProfile'
-Precis = require '../../../src/Precis'
+Precis = require '../../../src/index'
 
 describe 'NicknameProfile', ->
 
