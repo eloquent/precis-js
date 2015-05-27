@@ -18,7 +18,7 @@ describe 'PrecisEnforcer', ->
     beforeEach ->
         @propertyReader = new CodepointPropertyReader @trie
         @preparer = new PrecisPreparer @propertyReader
-        @subject = new PrecisEnforcer @preparer, unorm
+        @subject = new PrecisEnforcer @preparer, @propertyReader, unorm
 
     describe 'enforce()', ->
 
@@ -39,6 +39,30 @@ describe 'PrecisEnforcer', ->
                 assert.throws (=> @subject.enforce @profile, "\u00B7"), InvalidCodepointError
                 assert.throws (=> @subject.enforce @profile, "\u0378"), InvalidCodepointError
                 assert.throws (=> @subject.enforce @profile, "\u200C"), InvalidCodepointError
+
+        describe 'for profiles with callbacks', ->
+
+            it 'calls the custom mapping callback', ->
+                passedCodepoints = null
+                passedPropertyReader = null
+                @profile =
+                    stringClass: Precis.STRING_CLASS.FREEFORM
+                    map: (codepoints, propertyReader) ->
+                        passedCodepoints = codepoints
+                        passedPropertyReader = propertyReader
+                @subject.enforce @profile, 'ab'
+
+                assert.deepEqual passedCodepoints, [97, 98]
+                assert.strictEqual passedPropertyReader, @propertyReader
+
+            it 'calls the custom validation callback', ->
+                passedCodepoints = null
+                @profile =
+                    stringClass: Precis.STRING_CLASS.FREEFORM
+                    validate: (codepoints) -> passedCodepoints = codepoints
+                @subject.enforce @profile, 'ab'
+
+                assert.deepEqual passedCodepoints, [97, 98]
 
         describe 'profile case mapping options', ->
 
