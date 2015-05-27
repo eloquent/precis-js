@@ -48,7 +48,7 @@ module.exports = class CodepointPropertyReader
         data = @trie.get codepoint
         (data >> precisShift) & precisMask
 
-    bidiCategory: (codepoint) ->
+    bidiClass: (codepoint) ->
         data = @trie.get codepoint
         (data >> bidiShift) & bidiMask
 
