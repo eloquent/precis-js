@@ -48,7 +48,7 @@ describe 'PrecisEnforcer', ->
                 @profile =
                     stringClass: Precis.STRING_CLASS.FREEFORM
                     map: (codepoints, propertyReader) ->
-                        passedCodepoints = codepoints
+                        passedCodepoints = codepoints.slice()
                         passedPropertyReader = propertyReader
                 @subject.enforce @profile, 'ab'
 
@@ -59,7 +59,7 @@ describe 'PrecisEnforcer', ->
                 passedCodepoints = null
                 @profile =
                     stringClass: Precis.STRING_CLASS.FREEFORM
-                    validate: (codepoints) -> passedCodepoints = codepoints
+                    validate: (codepoints) -> passedCodepoints = codepoints.slice()
                 @subject.enforce @profile, 'ab'
 
                 assert.deepEqual passedCodepoints, [97, 98]
