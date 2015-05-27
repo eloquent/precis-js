@@ -4,7 +4,7 @@ UnicodeTrie = require 'unicode-trie'
 log2 = Math.log2 or (n) -> Math.log(n) / Math.LN2
 bits = (n) -> (log2(n) + 1) | 0
 
-precisCategories =
+PRECIS =
     UNASSIGNED: 0
     DISALLOWED: 1
     FREE_PVAL: 2
@@ -12,7 +12,7 @@ precisCategories =
     CONTEXTO: 4
     CONTEXTJ: 5
 
-bidiClasses =
+BIDI =
     OTHER: 0
     L: 1
     R: 2
@@ -26,8 +26,8 @@ bidiClasses =
     BN: 10
     NSM: 11
 
-precisBits = bits Object.keys(precisCategories).length - 1
-bidiBits = bits Object.keys(bidiClasses).length - 1
+precisBits = bits Object.keys(PRECIS).length - 1
+bidiBits = bits Object.keys(BIDI).length - 1
 
 precisShift = bidiBits + 1
 bidiShift = 1
@@ -37,8 +37,8 @@ bidiMask = (1 << bidiBits) - 1
 
 module.exports = class CodepointPropertyReader
 
-    @PRECIS = precisCategories
-    @BIDI = bidiClasses
+    @PRECIS = PRECIS
+    @BIDI = BIDI
 
     constructor: (@trie) ->
         unless @trie?
@@ -54,4 +54,5 @@ module.exports = class CodepointPropertyReader
         (data >> bidiShift) & bidiMask
 
     isNonAsciiSpace: (codepoint) ->
-        @trie.get codepoint & 1
+        data = @trie.get codepoint
+        data & 1

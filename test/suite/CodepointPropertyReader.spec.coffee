@@ -42,3 +42,35 @@ describe 'CodepointPropertyReader', ->
             assert.strictEqual @subject.bidiClass(0x2067), CodepointPropertyReader.BIDI.OTHER # RLI
             assert.strictEqual @subject.bidiClass(0x2068), CodepointPropertyReader.BIDI.OTHER # FSI
             assert.strictEqual @subject.bidiClass(0x2069), CodepointPropertyReader.BIDI.OTHER # PDI
+
+    describe 'isNonAsciiSpace()', ->
+
+        it 'returns truthy for non-ASCII space separators', ->
+            assert.ok @subject.isNonAsciiSpace 0x00A0
+            assert.ok @subject.isNonAsciiSpace 0x1680
+            assert.ok @subject.isNonAsciiSpace 0x2000
+            assert.ok @subject.isNonAsciiSpace 0x2001
+            assert.ok @subject.isNonAsciiSpace 0x2002
+            assert.ok @subject.isNonAsciiSpace 0x2003
+            assert.ok @subject.isNonAsciiSpace 0x2004
+            assert.ok @subject.isNonAsciiSpace 0x2005
+            assert.ok @subject.isNonAsciiSpace 0x2006
+            assert.ok @subject.isNonAsciiSpace 0x2007
+            assert.ok @subject.isNonAsciiSpace 0x2008
+            assert.ok @subject.isNonAsciiSpace 0x2009
+            assert.ok @subject.isNonAsciiSpace 0x200A
+            assert.ok @subject.isNonAsciiSpace 0x202F
+            assert.ok @subject.isNonAsciiSpace 0x205F
+            assert.ok @subject.isNonAsciiSpace 0x3000
+
+        it 'returns falsy for the ASCII space codepoint', ->
+            assert.notOk @subject.isNonAsciiSpace 0x0020
+
+        it 'returns falsy for non-space characters', ->
+            assert.notOk @subject.isNonAsciiSpace 0x0030
+
+        it 'returns falsy for line separators', ->
+            assert.notOk @subject.isNonAsciiSpace 0x2028
+
+        it 'returns falsy for paragraph separators', ->
+            assert.notOk @subject.isNonAsciiSpace 0x2029
