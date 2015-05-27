@@ -1,8 +1,13 @@
+EmptyStringError = require '../error/EmptyStringError'
 Precis = require '../Precis'
 
 module.exports = class NicknameProfile
 
+    stringClass: Precis.STRING_CLASS.FREEFORM
     widthMapping: Precis.WIDTH_MAPPING.NONE
+    caseMapping: Precis.CASE_MAPPING.LOWERCASE
+    normalization: Precis.NORMALIZATION.KC
+    directionality: Precis.DIRECTIONALITY.NONE
 
     map: (codepoints, propertyReader) ->
         i = codepoints.length - 1
@@ -36,3 +41,6 @@ module.exports = class NicknameProfile
             --i
 
         codepoints.splice 0, last if last > 0
+
+    validate: (codepoints) ->
+        throw new EmptyStringError() if codepoints.length < 1

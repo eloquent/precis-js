@@ -1,7 +1,9 @@
 {ucs2} = require 'punycode'
 
 CodepointPropertyReader = require '../../../src/CodepointPropertyReader'
+EmptyStringError = require '../../../src/error/EmptyStringError'
 NicknameProfile = require '../../../src/profile/NicknameProfile'
+Precis = require '../../../src/Precis'
 
 describe 'NicknameProfile', ->
 
@@ -9,6 +11,13 @@ describe 'NicknameProfile', ->
         @subject = new NicknameProfile()
 
         @propertyReader = new CodepointPropertyReader()
+
+    it 'has the correct properties', ->
+        assert.strictEqual @subject.stringClass, Precis.STRING_CLASS.FREEFORM
+        assert.strictEqual @subject.widthMapping, Precis.WIDTH_MAPPING.NONE
+        assert.strictEqual @subject.caseMapping, Precis.CASE_MAPPING.LOWERCASE
+        assert.strictEqual @subject.normalization, Precis.NORMALIZATION.KC
+        assert.strictEqual @subject.directionality, Precis.DIRECTIONALITY.NONE
 
     describe 'map()', ->
 
@@ -47,3 +56,8 @@ describe 'NicknameProfile', ->
             @subject.map codepoints, @propertyReader
 
             assert.strictEqual ucs2.encode(codepoints), 'ab cd ef'
+
+    describe 'validate()', ->
+
+        it 'rejects empty strings', ->
+            assert.throws (=> @subject.validate []), EmptyStringError
