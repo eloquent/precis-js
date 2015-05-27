@@ -24,14 +24,14 @@ describe 'PrecisPreparer', ->
         describe 'with the FreeformClass string class', ->
 
             beforeEach ->
-                @stringClass = Precis.STRING_CLASS.FREEFORM
+                @profile = stringClass: Precis.STRING_CLASS.FREEFORM
 
             it 'allows characters in the FreeformClass string class', ->
-                assert.deepEqual @subject.prepare(@stringClass, "\u0020\u0021"), [0x0020, 0x0021]
+                assert.deepEqual @subject.prepare(@profile, "\u0020\u0021"), [0x0020, 0x0021]
 
             it 'rejects characters outside the FreeformClass string class', ->
-                assert.throws (=> @subject.prepare @stringClass, "\u0000"), InvalidCodepointError
-                assert.throws (=> @subject.prepare @stringClass, "\u007F"), InvalidCodepointError
-                assert.throws (=> @subject.prepare @stringClass, "\u00B7"), InvalidCodepointError
-                assert.throws (=> @subject.prepare @stringClass, "\u0378"), InvalidCodepointError
-                assert.throws (=> @subject.prepare @stringClass, "\u200C"), InvalidCodepointError
+                assert.throws (=> @subject.prepare @profile, "\u0000"), InvalidCodepointError
+                assert.throws (=> @subject.prepare @profile, "\u007F"), InvalidCodepointError
+                assert.throws (=> @subject.prepare @profile, "\u00B7"), InvalidCodepointError
+                assert.throws (=> @subject.prepare @profile, "\u0378"), InvalidCodepointError
+                assert.throws (=> @subject.prepare @profile, "\u200C"), InvalidCodepointError

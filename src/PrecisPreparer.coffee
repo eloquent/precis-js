@@ -7,10 +7,10 @@ module.exports = class PrecisPreparer
 
     constructor: (@propertyReader) ->
 
-    prepare: (stringClass, string) ->
+    prepare: (profile, string) ->
         codepoints = ucs2.decode string
 
-        switch stringClass
+        switch profile.stringClass
             when Precis.STRING_CLASS.FREEFORM then @_validateFreeform codepoints
             else
                 throw new Error 'Not implemented.'
