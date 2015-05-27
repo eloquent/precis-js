@@ -29,3 +29,17 @@ module.exports =
         PVALID: 3
         CONTEXTO: 4
         CONTEXTJ: 5
+
+    BIDI_CLASS:
+        OTHER: 0
+        L: 1
+        R: 2
+        AL: 3
+        AN: 4
+        EN: 5
+        ES: 6
+        CS: 7
+        ET: 8
+        ON: 9
+        BN: 10
+        NSM: 11
