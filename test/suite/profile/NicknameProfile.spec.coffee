@@ -65,5 +65,8 @@ describe 'NicknameProfile', ->
 
     describe 'validate()', ->
 
+        it 'allows non-empty strings', ->
+            assert.doesNotThrow => @subject.validate [0]
+
         it 'rejects empty strings', ->
             assert.throws (=> @subject.validate []), EmptyStringError
