@@ -20,10 +20,10 @@ describe 'NicknameProfile', ->
 
     it 'has the correct properties', ->
         assert.strictEqual @subject.stringClass, Precis.STRING_CLASS.FREEFORM
-        assert.strictEqual @subject.widthMapping, Precis.WIDTH_MAPPING.NONE
+        assert.isFalse @subject.widthMapping
         assert.strictEqual @subject.caseMapping, Precis.CASE_MAPPING.LOWERCASE
         assert.strictEqual @subject.normalization, Precis.NORMALIZATION.KC
-        assert.strictEqual @subject.directionality, Precis.DIRECTIONALITY.NONE
+        assert.isFalse @subject.checkBidi
 
     describe 'map()', ->
 
