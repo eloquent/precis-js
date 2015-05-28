@@ -10,9 +10,8 @@ module.exports = class PrecisEnforcer
 
         profile.map codepoints, @propertyReader if profile.map?
 
-        switch profile.caseMapping
-            when Precis.CASE_MAPPING.LOWERCASE
-                codepoints = ucs2.decode ucs2.encode(codepoints).toLowerCase()
+        if profile.caseMapping is Precis.CASE_MAPPING.LOWERCASE
+            codepoints = ucs2.decode ucs2.encode(codepoints).toLowerCase()
 
         switch profile.normalization
             when Precis.NORMALIZATION.C
