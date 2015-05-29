@@ -9,10 +9,10 @@ describe 'UsernameCaseMappedProfile', ->
 
     it 'has the correct properties', ->
         assert.strictEqual @subject.stringClass, Precis.STRING_CLASS.IDENTIFIER
-        assert.isTrue @subject.widthMapping
+        assert.strictEqual @subject.widthMapping, Precis.WIDTH_MAPPING.EAW
         assert.strictEqual @subject.caseMapping, Precis.CASE_MAPPING.LOWERCASE
         assert.strictEqual @subject.normalization, Precis.NORMALIZATION.C
-        assert.isTrue @subject.checkBidi
+        assert.strictEqual @subject.directionality, Precis.DIRECTIONALITY.BIDI
 
     describe 'validate()', ->
 

@@ -4,10 +4,10 @@ Precis = require '../index'
 module.exports = class NicknameProfile
 
     stringClass: Precis.STRING_CLASS.FREEFORM
-    widthMapping: false
+    widthMapping: Precis.WIDTH_MAPPING.NONE
     caseMapping: Precis.CASE_MAPPING.LOWERCASE
     normalization: Precis.NORMALIZATION.KC
-    checkBidi: false
+    directionality: Precis.DIRECTIONALITY.NONE
 
     map: (codepoints, propertyReader) ->
         i = codepoints.length - 1
