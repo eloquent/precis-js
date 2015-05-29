@@ -3,12 +3,21 @@ Precis = require './index'
 
 module.exports = class PrecisEnforcer
 
-    constructor: (@preparer, @propertyReader, @normalizer) ->
+    constructor: (
+        @preparer
+        @propertyReader
+        @widthMapper
+        @normalizer
+        @directionalityValidator
+    ) ->
 
     enforce: (profile, string) ->
         codepoints = @preparer.prepare profile, string
 
         profile.map codepoints, @propertyReader if profile.map?
+
+        if profile.widthMapping is Precis.WIDTH_MAPPING.EAW
+            @widthMapper.map codepoints
 
         if profile.caseMapping is Precis.CASE_MAPPING.LOWERCASE
             codepoints = ucs2.decode ucs2.encode(codepoints).toLowerCase()
@@ -22,6 +31,9 @@ module.exports = class PrecisEnforcer
                 codepoints = ucs2.decode @normalizer.nfkc ucs2.encode codepoints
             when Precis.NORMALIZATION.KD
                 codepoints = ucs2.decode @normalizer.nfkd ucs2.encode codepoints
+
+        if profile.directionality is Precis.DIRECTIONALITY.BIDI
+            @directionalityValidator.validate codepoints
 
         profile.validate codepoints if profile.validate?
 
