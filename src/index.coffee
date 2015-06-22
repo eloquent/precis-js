@@ -1,3 +1,3 @@
-constants = require './constants'
+Precis = require './enforce'
 
-module.exports = constants
+module.exports = Precis

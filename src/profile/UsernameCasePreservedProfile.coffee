@@ -1,5 +1,5 @@
 EmptyStringError = require '../error/EmptyStringError'
-Precis = require '../index'
+Precis = require '../constants'
 
 module.exports = class UsernameCasePreservedProfile
 

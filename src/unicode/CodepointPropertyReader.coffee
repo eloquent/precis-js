@@ -1,4 +1,4 @@
-Precis = require '../index'
+Precis = require '../constants'
 
 ### !pragma coverage-skip-next ###
 log2 = Math.log2 or (n) -> Math.log(n) / Math.LN2

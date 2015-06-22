@@ -1,4 +1,4 @@
-Precis = require './index'
+Precis = require './constants'
 {ucs2} = require 'punycode'
 
 module.exports = class PrecisEnforcer

@@ -1,5 +1,5 @@
 InvalidDirectionalityError = require '../error/InvalidDirectionalityError'
-Precis = require '../index'
+Precis = require '../constants'
 
 module.exports = class DirectionalityValidator
 

@@ -1,7 +1,7 @@
 {ucs2} = require 'punycode'
 
 InvalidCodepointError = require './error/InvalidCodepointError'
-Precis = require './index'
+Precis = require './constants'
 
 module.exports = class PrecisPreparer
 

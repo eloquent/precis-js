@@ -2,7 +2,7 @@ fs = require 'fs'
 UnicodeTrie = require 'unicode-trie'
 
 CodepointPropertyReader = require './unicode/CodepointPropertyReader'
-constants = require './constants'
+Precis = require './constants'
 PrecisPreparer = require './PrecisPreparer'
 
 trieData = fs.readFileSync __dirname + '/../data/properties.trie'
@@ -11,6 +11,7 @@ trie = new UnicodeTrie trieData
 propertyReader = new CodepointPropertyReader trie
 preparer = new PrecisPreparer propertyReader
 
-module.exports = constants
+module.exports = Precis
 module.exports.prepare = preparer.prepare.bind preparer
-module.exports._propertyReader = propertyReader
+module.exports.preparer = preparer
+module.exports.propertyReader = propertyReader
