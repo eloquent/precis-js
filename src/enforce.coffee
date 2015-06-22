@@ -1,10 +1,9 @@
 fs = require 'fs'
 unorm = require 'unorm'
 
-DirectionalityValidator = require './unicode/DirectionalityValidator'
 Precis = require './prepare'
-PrecisEnforcer = require './PrecisEnforcer'
-WidthMapper = require './unicode/WidthMapper'
+{DirectionalityValidator, WidthMapper} = Precis.unicode
+{PrecisEnforcer} = Precis
 
 widthMappingData =
     JSON.parse fs.readFileSync __dirname + '/../data/width-mapping.json'
@@ -20,4 +19,7 @@ enforcer = new PrecisEnforcer \
     directionalityValidator
 
 module.exports = Precis
+
 module.exports.enforce = enforcer.enforce.bind enforcer
+
+module.exports.enforcer = enforcer

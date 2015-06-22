@@ -1,7 +1,32 @@
+CodepointPropertyReader = require '../../src/unicode/CodepointPropertyReader'
+DirectionalityValidator = require '../../src/unicode/DirectionalityValidator'
+EmptyStringError = require '../../src/error/EmptyStringError'
 InvalidCodepointError = require '../../src/error/InvalidCodepointError'
+InvalidDirectionalityError = require '../../src/error/InvalidDirectionalityError'
+NicknameProfile = require '../../src/profile/NicknameProfile'
+OpaqueStringProfile = require '../../src/profile/OpaqueStringProfile'
 Precis = require '../../src/prepare'
+PrecisPreparer = require '../../src/PrecisPreparer'
+UsernameCaseMappedProfile = require '../../src/profile/UsernameCaseMappedProfile'
+UsernameCasePreservedProfile = require '../../src/profile/UsernameCasePreservedProfile'
+WidthMapper = require '../../src/unicode/WidthMapper'
 
 describe 'Precis (prepare only)', ->
+
+    it 'produces the correct exports', ->
+        assert.instanceOf Precis.preparer, PrecisPreparer
+        assert.instanceOf Precis.propertyReader, CodepointPropertyReader
+        assert.strictEqual Precis.PrecisPreparer, PrecisPreparer
+        assert.strictEqual Precis.error.EmptyStringError, EmptyStringError
+        assert.strictEqual Precis.error.InvalidCodepointError, InvalidCodepointError
+        assert.strictEqual Precis.error.InvalidDirectionalityError, InvalidDirectionalityError
+        assert.strictEqual Precis.profile.NicknameProfile, NicknameProfile
+        assert.strictEqual Precis.profile.OpaqueStringProfile, OpaqueStringProfile
+        assert.strictEqual Precis.profile.UsernameCaseMappedProfile, UsernameCaseMappedProfile
+        assert.strictEqual Precis.profile.UsernameCasePreservedProfile, UsernameCasePreservedProfile
+        assert.strictEqual Precis.unicode.CodepointPropertyReader, CodepointPropertyReader
+        assert.strictEqual Precis.unicode.DirectionalityValidator, DirectionalityValidator
+        assert.strictEqual Precis.unicode.WidthMapper, WidthMapper
 
     describe 'prepare()', ->
 
