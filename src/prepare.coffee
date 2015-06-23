@@ -37,4 +37,5 @@ module.exports.profile =
 module.exports.unicode =
     CodepointPropertyReader: CodepointPropertyReader
     DirectionalityValidator: require './unicode/DirectionalityValidator'
+    Normalizer: require './unicode/Normalizer'
     WidthMapper: require './unicode/WidthMapper'

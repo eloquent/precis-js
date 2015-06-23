@@ -4,6 +4,7 @@ EmptyStringError = require '../../src/error/EmptyStringError'
 InvalidCodepointError = require '../../src/error/InvalidCodepointError'
 InvalidDirectionalityError = require '../../src/error/InvalidDirectionalityError'
 NicknameProfile = require '../../src/profile/NicknameProfile'
+Normalizer = require '../../src/unicode/Normalizer'
 OpaqueStringProfile = require '../../src/profile/OpaqueStringProfile'
 Precis = require '../../src/prepare'
 PrecisPreparer = require '../../src/PrecisPreparer'
@@ -26,6 +27,7 @@ describe 'Precis (prepare only)', ->
         assert.strictEqual Precis.profile.UsernameCasePreservedProfile, UsernameCasePreservedProfile
         assert.strictEqual Precis.unicode.CodepointPropertyReader, CodepointPropertyReader
         assert.strictEqual Precis.unicode.DirectionalityValidator, DirectionalityValidator
+        assert.strictEqual Precis.unicode.Normalizer, Normalizer
         assert.strictEqual Precis.unicode.WidthMapper, WidthMapper
 
     describe 'prepare()', ->

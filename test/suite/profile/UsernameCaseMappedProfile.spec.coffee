@@ -1,5 +1,5 @@
 EmptyStringError = require '../../../src/error/EmptyStringError'
-Precis = require '../../../src/index'
+Precis = require '../../../src/constants'
 UsernameCaseMappedProfile = require '../../../src/profile/UsernameCaseMappedProfile'
 
 describe 'UsernameCaseMappedProfile', ->

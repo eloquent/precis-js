@@ -9,3 +9,7 @@ node_modules/.bin/discify build/precis.prepare.js > build/precis.prepare.disc.ht
 node_modules/.bin/browserify --full-paths --extension .coffee -t coffeeify -t brfs src/enforce.coffee > build/precis.enforce.js
 node_modules/.bin/uglifyjs build/precis.enforce.js > build/precis.enforce.min.js
 node_modules/.bin/discify build/precis.enforce.js > build/precis.enforce.disc.html
+
+node_modules/.bin/browserify --full-paths --extension .coffee -t coffeeify -t brfs src/enforce-es6.coffee > build/precis.enforce-es6.js
+node_modules/.bin/uglifyjs build/precis.enforce-es6.js > build/precis.enforce-es6.min.js
+node_modules/.bin/discify build/precis.enforce-es6.js > build/precis.enforce-es6.disc.html

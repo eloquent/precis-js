@@ -30,19 +30,7 @@ module.exports = class PrecisEnforcer
         if typeof profile.normalize is 'function'
             profile.normalize codepoints
         else
-            switch profile.normalization
-                when Precis.NORMALIZATION.C
-                    codepoints =
-                        ucs2.decode @normalizer.nfc ucs2.encode codepoints
-                when Precis.NORMALIZATION.D
-                    codepoints =
-                        ucs2.decode @normalizer.nfd ucs2.encode codepoints
-                when Precis.NORMALIZATION.KC
-                    codepoints =
-                        ucs2.decode @normalizer.nfkc ucs2.encode codepoints
-                when Precis.NORMALIZATION.KD
-                    codepoints =
-                        ucs2.decode @normalizer.nfkd ucs2.encode codepoints
+            codepoints = @normalizer.normalize profile.normalization, codepoints
 
         if typeof profile.validateDirectionality is 'function'
             profile.validateDirectionality codepoints

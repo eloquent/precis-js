@@ -7,7 +7,8 @@ CodepointPropertyReader = require '../../src/unicode/CodepointPropertyReader'
 DirectionalityValidator = require '../../src/unicode/DirectionalityValidator'
 InvalidCodepointError = require '../../src/error/InvalidCodepointError'
 InvalidDirectionalityError = require '../../src/error/InvalidDirectionalityError'
-Precis = require '../../src/index'
+Normalizer = require '../../src/unicode/Normalizer'
+Precis = require '../../src/constants'
 PrecisEnforcer = require '../../src/PrecisEnforcer'
 PrecisPreparer = require '../../src/PrecisPreparer'
 WidthMapper = require '../../src/unicode/WidthMapper'
@@ -22,41 +23,40 @@ describe 'PrecisEnforcer', ->
         @propertyReader = new CodepointPropertyReader trie
         @preparer = new PrecisPreparer @propertyReader
         @widthMapper = new WidthMapper widthMappingData
+        @normalizer = new Normalizer unorm
         @directionalityValidator = new DirectionalityValidator @propertyReader
 
     beforeEach ->
-        @subject = new PrecisEnforcer @preparer, @propertyReader, @widthMapper, unorm, @directionalityValidator
+        @subject = new PrecisEnforcer @preparer, @propertyReader, @widthMapper, @normalizer, @directionalityValidator
+
+        @profile = stringClass: Precis.STRING_CLASS.FREEFORM, normalization: Precis.NORMALIZATION.NONE
 
     describe 'enforce()', ->
 
         it 'supports custom width mapping logic', ->
             passedCodepoints = null
-            @profile = stringClass: Precis.STRING_CLASS.FREEFORM, mapWidth: (codepoints) ->
-                passedCodepoints = codepoints.slice()
+            @profile.mapWidth = (codepoints) -> passedCodepoints = codepoints.slice()
             @subject.enforce @profile, 'ab'
 
             assert.deepEqual passedCodepoints, [97, 98]
 
         it 'supports custom case mapping logic', ->
             passedCodepoints = null
-            @profile = stringClass: Precis.STRING_CLASS.FREEFORM, mapCase: (codepoints) ->
-                passedCodepoints = codepoints.slice()
+            @profile.mapCase = (codepoints) -> passedCodepoints = codepoints.slice()
             @subject.enforce @profile, 'ab'
 
             assert.deepEqual passedCodepoints, [97, 98]
 
         it 'supports custom normalization logic', ->
             passedCodepoints = null
-            @profile = stringClass: Precis.STRING_CLASS.FREEFORM, normalize: (codepoints) ->
-                passedCodepoints = codepoints.slice()
+            @profile.normalize = (codepoints) -> passedCodepoints = codepoints.slice()
             @subject.enforce @profile, 'ab'
 
             assert.deepEqual passedCodepoints, [97, 98]
 
         it 'supports custom directionality validation', ->
             passedCodepoints = null
-            @profile = stringClass: Precis.STRING_CLASS.FREEFORM, validateDirectionality: (codepoints) ->
-                passedCodepoints = codepoints.slice()
+            @profile.validateDirectionality = (codepoints) -> passedCodepoints = codepoints.slice()
             @subject.enforce @profile, 'ab'
 
             assert.deepEqual passedCodepoints, [97, 98]
@@ -67,7 +67,7 @@ describe 'PrecisEnforcer', ->
         describe 'for FreeformClass string class profiles', ->
 
             beforeEach ->
-                @profile = stringClass: Precis.STRING_CLASS.FREEFORM
+                @profile = stringClass: Precis.STRING_CLASS.FREEFORM, normalization: Precis.NORMALIZATION.NONE
 
             it 'allows characters in the FreeformClass string class', ->
                 assert.strictEqual @subject.enforce(@profile, ' !'), ' !'
@@ -86,6 +86,7 @@ describe 'PrecisEnforcer', ->
                 passedPropertyReader = null
                 @profile =
                     stringClass: Precis.STRING_CLASS.FREEFORM
+                    normalization: Precis.NORMALIZATION.NONE
                     map: (codepoints, propertyReader) ->
                         passedCodepoints = codepoints.slice()
                         passedPropertyReader = propertyReader
@@ -98,6 +99,7 @@ describe 'PrecisEnforcer', ->
                 passedCodepoints = null
                 @profile =
                     stringClass: Precis.STRING_CLASS.FREEFORM
+                    normalization: Precis.NORMALIZATION.NONE
                     validate: (codepoints) -> passedCodepoints = codepoints.slice()
                 @subject.enforce @profile, 'ab'
 
@@ -108,6 +110,7 @@ describe 'PrecisEnforcer', ->
             it 'supports width mapping', ->
                 @profile =
                     stringClass: Precis.STRING_CLASS.FREEFORM
+                    normalization: Precis.NORMALIZATION.NONE
                     widthMapping: Precis.WIDTH_MAPPING.EAW
 
                 assert.strictEqual @subject.enforce(@profile, '\uFF61'), '\u3002'
@@ -115,7 +118,7 @@ describe 'PrecisEnforcer', ->
         describe 'profile case mapping options', ->
 
             beforeEach ->
-                @profile = stringClass: Precis.STRING_CLASS.FREEFORM
+                @profile = stringClass: Precis.STRING_CLASS.FREEFORM, normalization: Precis.NORMALIZATION.NONE
 
             it 'supports lowercase case mapping', ->
                 @profile.caseMapping = Precis.CASE_MAPPING.LOWERCASE
@@ -125,7 +128,7 @@ describe 'PrecisEnforcer', ->
         describe 'profile normalization options', ->
 
             beforeEach ->
-                @profile = stringClass: Precis.STRING_CLASS.FREEFORM
+                @profile = stringClass: Precis.STRING_CLASS.FREEFORM, normalization: Precis.NORMALIZATION.NONE
 
             it 'supports NFC normalization', ->
                 @profile.normalization = Precis.NORMALIZATION.C
@@ -160,6 +163,7 @@ describe 'PrecisEnforcer', ->
             it 'supports directionality validation', ->
                 @profile =
                     stringClass: Precis.STRING_CLASS.FREEFORM
+                    normalization: Precis.NORMALIZATION.NONE
                     directionality: Precis.DIRECTIONALITY.BIDI
 
                 assert.doesNotThrow => @subject.enforce @profile, 'ab'

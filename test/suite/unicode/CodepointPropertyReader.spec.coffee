@@ -2,7 +2,7 @@ fs = require 'fs'
 UnicodeTrie = require 'unicode-trie'
 
 CodepointPropertyReader = require '../../../src/unicode/CodepointPropertyReader'
-Precis = require '../../../src/index'
+Precis = require '../../../src/constants'
 
 describe 'CodepointPropertyReader', ->
 

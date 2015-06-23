@@ -3,7 +3,7 @@ UnicodeTrie = require 'unicode-trie'
 
 CodepointPropertyReader = require '../../src/unicode/CodepointPropertyReader'
 InvalidCodepointError = require '../../src/error/InvalidCodepointError'
-Precis = require '../../src/index'
+Precis = require '../../src/constants'
 PrecisPreparer = require '../../src/PrecisPreparer'
 
 describe 'PrecisPreparer', ->

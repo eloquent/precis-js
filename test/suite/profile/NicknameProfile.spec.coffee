@@ -5,7 +5,7 @@ UnicodeTrie = require 'unicode-trie'
 CodepointPropertyReader = require '../../../src/unicode/CodepointPropertyReader'
 EmptyStringError = require '../../../src/error/EmptyStringError'
 NicknameProfile = require '../../../src/profile/NicknameProfile'
-Precis = require '../../../src/index'
+Precis = require '../../../src/constants'
 
 describe 'NicknameProfile', ->
 

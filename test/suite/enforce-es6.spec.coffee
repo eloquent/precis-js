@@ -1,3 +1,4 @@
+unorm = require 'unorm'
 {ucs2} = require 'punycode'
 
 CodepointPropertyReader = require '../../src/unicode/CodepointPropertyReader'
@@ -8,7 +9,7 @@ InvalidDirectionalityError = require '../../src/error/InvalidDirectionalityError
 NicknameProfile = require '../../src/profile/NicknameProfile'
 Normalizer = require '../../src/unicode/Normalizer'
 OpaqueStringProfile = require '../../src/profile/OpaqueStringProfile'
-Precis = require '../../src/enforce'
+Precis = require '../../src/enforce-es6'
 PrecisEnforcer = require '../../src/PrecisEnforcer'
 PrecisPreparer = require '../../src/PrecisPreparer'
 UsernameCaseMappedProfile = require '../../src/profile/UsernameCaseMappedProfile'
