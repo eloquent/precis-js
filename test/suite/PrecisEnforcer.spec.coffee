@@ -62,7 +62,7 @@ describe 'PrecisEnforcer', ->
             assert.deepEqual passedCodepoints, [97, 98]
 
         it 'throws an error if the string class is not implemented', ->
-            assert.throws (=> @subject.enforce stringClass: 111, ''), 'Not implemented.'
+            assert.throws (=> @subject.enforce stringClass: 111, ''), 'PRECIS string class not implemented.'
 
         describe 'for FreeformClass string class profiles', ->
 

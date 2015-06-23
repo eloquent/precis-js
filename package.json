@@ -1,6 +1,8 @@
 {
   "dependencies": {
-    "unicode-trie": "^0.3.0",
+    "unicode-trie": "^0.3.0"
+  },
+  "optionalDependencies": {
     "unorm": "^1.3.3"
   },
   "devDependencies": {

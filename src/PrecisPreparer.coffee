@@ -16,7 +16,7 @@ module.exports = class PrecisPreparer
             when Precis.STRING_CLASS.FREEFORM then @_freeform codepoints
             when Precis.STRING_CLASS.IDENTIFIER then @_identifier codepoints
             else
-                throw new Error 'Not implemented.'
+                throw new Error 'PRECIS string class not implemented.'
 
         codepoints
 
