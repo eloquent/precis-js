@@ -35,7 +35,7 @@ describe 'Precis', ->
     describe 'prepare()', ->
 
         it 'throws an error if the string class is not implemented', ->
-            assert.throws (=> Precis.prepare stringClass: 111, ''), 'PRECIS string class not implemented.'
+            assert.throws (-> Precis.prepare stringClass: 111, ''), 'PRECIS string class not implemented.'
 
         describe 'for FreeformClass string class profiles', ->
 
@@ -71,7 +71,7 @@ describe 'Precis', ->
     describe 'enforce()', ->
 
         it 'throws an error if the string class is not implemented', ->
-            assert.throws (=> Precis.enforce stringClass: 111, ''), 'PRECIS string class not implemented.'
+            assert.throws (-> Precis.enforce stringClass: 111, ''), 'PRECIS string class not implemented.'
 
         describe 'for FreeformClass string class profiles', ->
 
