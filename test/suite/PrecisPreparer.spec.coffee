@@ -18,6 +18,12 @@ describe 'PrecisPreparer', ->
 
     describe 'prepare()', ->
 
+        it 'supports custom prepare logic', ->
+            @profile = prepare: sinon.spy()
+            @subject.prepare @profile, 'ab'
+
+            sinon.assert.calledWith @profile.prepare, 'ab'
+
         it 'throws an error if the string class is not implemented', ->
             assert.throws (=> @subject.prepare stringClass: 111, ''), 'Not implemented.'
 

@@ -14,7 +14,8 @@ module.exports = class PrecisEnforcer
     enforce: (profile, string) ->
         codepoints = @preparer.prepare profile, string
 
-        profile.map codepoints, @propertyReader if profile.map?
+        if typeof profile.map is 'function'
+            profile.map codepoints, @propertyReader
 
         if profile.widthMapping is Precis.WIDTH_MAPPING.EAW
             @widthMapper.map codepoints
@@ -35,6 +36,6 @@ module.exports = class PrecisEnforcer
         if profile.directionality is Precis.DIRECTIONALITY.BIDI
             @directionalityValidator.validate codepoints
 
-        profile.validate codepoints if profile.validate?
+        profile.validate codepoints if typeof profile.validate is 'function'
 
         ucs2.encode codepoints

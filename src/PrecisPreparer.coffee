@@ -8,6 +8,8 @@ module.exports = class PrecisPreparer
     constructor: (@propertyReader) ->
 
     prepare: (profile, string) ->
+        return profile.prepare string if typeof profile.prepare is 'function'
+
         codepoints = ucs2.decode string
 
         switch profile.stringClass
