@@ -2,6 +2,6 @@
 
 set -e
 
-node_modules/.bin/mocha "${1-test/suite}"
 node_modules/.bin/coffeelint src
 node_modules/.bin/coffeelint --file coffeelint.test.json test
+node_modules/.bin/mocha "${1-test/suite}"
