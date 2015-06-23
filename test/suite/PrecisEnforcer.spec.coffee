@@ -37,6 +37,30 @@ describe 'PrecisEnforcer', ->
 
             assert.deepEqual passedCodepoints, [97, 98]
 
+        it 'supports custom case mapping logic', ->
+            passedCodepoints = null
+            @profile = stringClass: Precis.STRING_CLASS.FREEFORM, mapCase: (codepoints) ->
+                passedCodepoints = codepoints.slice()
+            @subject.enforce @profile, 'ab'
+
+            assert.deepEqual passedCodepoints, [97, 98]
+
+        it 'supports custom normalization logic', ->
+            passedCodepoints = null
+            @profile = stringClass: Precis.STRING_CLASS.FREEFORM, normalize: (codepoints) ->
+                passedCodepoints = codepoints.slice()
+            @subject.enforce @profile, 'ab'
+
+            assert.deepEqual passedCodepoints, [97, 98]
+
+        it 'supports custom directionality validation', ->
+            passedCodepoints = null
+            @profile = stringClass: Precis.STRING_CLASS.FREEFORM, validateDirectionality: (codepoints) ->
+                passedCodepoints = codepoints.slice()
+            @subject.enforce @profile, 'ab'
+
+            assert.deepEqual passedCodepoints, [97, 98]
+
         it 'throws an error if the string class is not implemented', ->
             assert.throws (=> @subject.enforce stringClass: 111, ''), 'Not implemented.'
 
