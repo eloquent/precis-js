@@ -8,6 +8,7 @@
     "codepoints": "^1.1.0",
     "coffee-coverage": "^0.5.4",
     "coffee-script": "^1.9.2",
+    "coffeelint": "^1.10.1",
     "istanbul": "^0.3.14",
     "mocha": "^2.2.5",
     "sinon": "^1.14.1"

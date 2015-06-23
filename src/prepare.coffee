@@ -31,7 +31,8 @@ module.exports.profile =
     NicknameProfile: require './profile/NicknameProfile'
     OpaqueStringProfile: require './profile/OpaqueStringProfile'
     UsernameCaseMappedProfile: require './profile/UsernameCaseMappedProfile'
-    UsernameCasePreservedProfile: require './profile/UsernameCasePreservedProfile'
+    UsernameCasePreservedProfile:
+        require './profile/UsernameCasePreservedProfile'
 
 module.exports.unicode =
     CodepointPropertyReader: CodepointPropertyReader

@@ -23,11 +23,12 @@ module.exports = class PrecisPreparer
     _freeform: (codepoints) ->
         for codepoint in codepoints
             category = @propertyReader.precisCategory codepoint
+            isValid = category is Precis.PRECIS_CATEGORY.PVALID or
+                category is Precis.PRECIS_CATEGORY.FREE_PVAL
 
-            if category isnt Precis.PRECIS_CATEGORY.PVALID and
-                category isnt Precis.PRECIS_CATEGORY.FREE_PVAL
-                    throw new InvalidCodepointError "The codepoint #{codepoint}
-                        is not allowed in the 'FreeformClass' string class."
+            unless isValid
+                throw new InvalidCodepointError "The codepoint #{codepoint} is
+                    not allowed in the 'FreeformClass' string class."
 
     _identifier: (codepoints) ->
         for codepoint in codepoints
