@@ -29,6 +29,14 @@ describe 'PrecisEnforcer', ->
 
     describe 'enforce()', ->
 
+        it 'supports custom width mapping logic', ->
+            passedCodepoints = null
+            @profile = stringClass: Precis.STRING_CLASS.FREEFORM, mapWidth: (codepoints) ->
+                passedCodepoints = codepoints.slice()
+            @subject.enforce @profile, 'ab'
+
+            assert.deepEqual passedCodepoints, [97, 98]
+
         it 'throws an error if the string class is not implemented', ->
             assert.throws (=> @subject.enforce stringClass: 111, ''), 'Not implemented.'
 

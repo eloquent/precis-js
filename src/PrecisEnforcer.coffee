@@ -17,7 +17,9 @@ module.exports = class PrecisEnforcer
         if typeof profile.map is 'function'
             profile.map codepoints, @propertyReader
 
-        if profile.widthMapping is Precis.WIDTH_MAPPING.EAW
+        if typeof profile.mapWidth is 'function'
+            profile.mapWidth codepoints
+        else if profile.widthMapping is Precis.WIDTH_MAPPING.EAW
             @widthMapper.map codepoints
 
         if profile.caseMapping is Precis.CASE_MAPPING.LOWERCASE
