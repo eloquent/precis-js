@@ -3,7 +3,7 @@
 fs = require 'fs'
 UnicodeTrieBuilder = require 'unicode-trie/builder'
 
-Precis = require '../src/index'
+Precis = require '../src/constants'
 
 log2 = Math.log2 or (n) -> Math.log(n) / Math.LN2
 bits = (n) -> (log2(n) + 1) | 0
