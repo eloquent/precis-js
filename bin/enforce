@@ -1,19 +1,8 @@
 #!/usr/bin/env coffee
 
-fs = require 'fs'
-UnicodeTrie = require 'unicode-trie'
-unorm = require 'unorm'
+Precis = require '../src/enforce'
+{NicknameProfile} = Precis.profile
 
-CodepointPropertyReader = require '../src/unicode/CodepointPropertyReader'
-NicknameProfile = require '../src/profile/NicknameProfile'
-PrecisEnforcer = require '../src/PrecisEnforcer'
-PrecisPreparer = require '../src/PrecisPreparer'
-
-data = fs.readFileSync __dirname + '/../data/properties.trie'
-trie = new UnicodeTrie data
-propertyReader = new CodepointPropertyReader trie
-preparer = new PrecisPreparer propertyReader
-enforcer = new PrecisEnforcer preparer, propertyReader, unorm
 profile = new NicknameProfile()
 
-console.log enforcer.enforce profile, process.argv[2]
+console.log Precis.enforce profile, process.argv[2]

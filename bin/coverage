@@ -2,6 +2,9 @@
 
 set -e
 
+node_modules/.bin/coffeelint src
+node_modules/.bin/coffeelint --file coffeelint.test.json test
+
 mkdir -p coverage
 node_modules/.bin/mocha --require coffee-coverage/register-istanbul "${1-test/suite}"
 node_modules/.bin/istanbul report

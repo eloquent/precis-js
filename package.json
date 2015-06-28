@@ -1,4 +1,31 @@
 {
+  "name": "precis-js",
+  "version": "0.0.0",
+  "description": "A JavaScript implementation of RFC 7564 (PRECIS Framework).",
+  "keywords": [
+    "precis",
+    "unicode",
+    "string",
+    "prepare",
+    "stringprep",
+    "username",
+    "password",
+    "nickname"
+  ],
+  "homepage": "https://github.com/ezzatron/precis-js",
+  "bugs": "https://github.com/ezzatron/precis-js/issues",
+  "repository": "ezzatron/precis-js.git",
+  "license": "MIT",
+  "author": {
+    "name": "Erin Millard",
+    "email": "ezzatron@gmail.com",
+    "url": "http://ezzatron.com/"
+  },
+  "main": "lib/enforce.js",
+  "engines": {
+    "node": "^0.10.0",
+    "npm": "^2.0.0"
+  },
   "dependencies": {
     "unicode-trie": "^0.3.0"
   },
@@ -8,9 +35,10 @@
   "devDependencies": {
     "brfs": "^1.4.0",
     "browserify": "^10.2.4",
-    "chai": "^2.3.0",
+    "chai": "^3.0.0",
+    "codecov.io": "^0.1.4",
     "codepoints": "^1.1.0",
-    "coffee-coverage": "^0.5.4",
+    "coffee-coverage": "^0.6.2",
     "coffee-script": "^1.9.2",
     "coffeeify": "^1.1.0",
     "coffeelint": "^1.10.1",
@@ -19,5 +47,8 @@
     "mocha": "^2.2.5",
     "sinon": "^1.14.1",
     "uglify-js": "^2.4.23"
+  },
+  "scripts": {
+    "test": "bin/test"
   }
 }
