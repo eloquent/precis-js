@@ -49,6 +49,7 @@
     "uglify-js": "^2.4.23"
   },
   "scripts": {
-    "test": "bin/test"
+    "test": "bin/test",
+    "install": "bin/build"
   }
 }

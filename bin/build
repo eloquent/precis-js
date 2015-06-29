@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+set -e
+
+node_modules/.bin/coffee --output lib --compile src
