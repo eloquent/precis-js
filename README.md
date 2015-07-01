@@ -6,8 +6,8 @@
 [![Current build status image][build-image]][Current build status]
 [![Current coverage status image][coverage-image]][Current coverage status]
 
-[build-image]: http://img.shields.io/travis/ezzatron/precis-js/master.svg?style=flat-square "Current build status for the master branch"
-[coverage-image]: https://img.shields.io/codecov/c/github/ezzatron/precis-js/master.svg?style=flat "Current test coverage"
+[build-image]: http://img.shields.io/travis/ezzatron/precis-js/develop.svg?style=flat-square "Current build status for the develop branch"
+[coverage-image]: https://img.shields.io/codecov/c/github/ezzatron/precis-js/develop.svg?style=flat "Current test coverage"
 [Current build status]: https://travis-ci.org/ezzatron/precis-js
 [Current coverage status]: https://coveralls.io/r/ezzatron/precis-js
 [Semantic versioning]: http://semver.org/
