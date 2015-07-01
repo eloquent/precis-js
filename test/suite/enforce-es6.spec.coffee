@@ -9,87 +9,87 @@ InvalidDirectionalityError = require '../../src/error/InvalidDirectionalityError
 NicknameProfile = require '../../src/profile/NicknameProfile'
 Normalizer = require '../../src/unicode/Normalizer'
 OpaqueStringProfile = require '../../src/profile/OpaqueStringProfile'
-Precis = require '../../src/enforce-es6'
+precis = require '../../src/enforce-es6'
 PrecisEnforcer = require '../../src/PrecisEnforcer'
 PrecisPreparer = require '../../src/PrecisPreparer'
 UsernameCaseMappedProfile = require '../../src/profile/UsernameCaseMappedProfile'
 UsernameCasePreservedProfile = require '../../src/profile/UsernameCasePreservedProfile'
 WidthMapper = require '../../src/unicode/WidthMapper'
 
-describe 'Precis', ->
+describe 'enforce-es6', ->
 
     it 'produces the correct exports', ->
-        assert.instanceOf Precis.enforcer, PrecisEnforcer
-        assert.instanceOf Precis.preparer, PrecisPreparer
-        assert.instanceOf Precis.propertyReader, CodepointPropertyReader
-        assert.strictEqual Precis.PrecisPreparer, PrecisPreparer
-        assert.strictEqual Precis.error.EmptyStringError, EmptyStringError
-        assert.strictEqual Precis.error.InvalidCodepointError, InvalidCodepointError
-        assert.strictEqual Precis.error.InvalidDirectionalityError, InvalidDirectionalityError
-        assert.strictEqual Precis.profile.NicknameProfile, NicknameProfile
-        assert.strictEqual Precis.profile.OpaqueStringProfile, OpaqueStringProfile
-        assert.strictEqual Precis.profile.UsernameCaseMappedProfile, UsernameCaseMappedProfile
-        assert.strictEqual Precis.profile.UsernameCasePreservedProfile, UsernameCasePreservedProfile
-        assert.strictEqual Precis.unicode.CodepointPropertyReader, CodepointPropertyReader
-        assert.strictEqual Precis.unicode.DirectionalityValidator, DirectionalityValidator
-        assert.strictEqual Precis.unicode.Normalizer, Normalizer
-        assert.strictEqual Precis.unicode.WidthMapper, WidthMapper
+        assert.instanceOf precis.enforcer, PrecisEnforcer
+        assert.instanceOf precis.preparer, PrecisPreparer
+        assert.instanceOf precis.propertyReader, CodepointPropertyReader
+        assert.strictEqual precis.PrecisPreparer, PrecisPreparer
+        assert.strictEqual precis.error.EmptyStringError, EmptyStringError
+        assert.strictEqual precis.error.InvalidCodepointError, InvalidCodepointError
+        assert.strictEqual precis.error.InvalidDirectionalityError, InvalidDirectionalityError
+        assert.strictEqual precis.profile.NicknameProfile, NicknameProfile
+        assert.strictEqual precis.profile.OpaqueStringProfile, OpaqueStringProfile
+        assert.strictEqual precis.profile.UsernameCaseMappedProfile, UsernameCaseMappedProfile
+        assert.strictEqual precis.profile.UsernameCasePreservedProfile, UsernameCasePreservedProfile
+        assert.strictEqual precis.unicode.CodepointPropertyReader, CodepointPropertyReader
+        assert.strictEqual precis.unicode.DirectionalityValidator, DirectionalityValidator
+        assert.strictEqual precis.unicode.Normalizer, Normalizer
+        assert.strictEqual precis.unicode.WidthMapper, WidthMapper
 
     describe 'prepare()', ->
 
         it 'throws an error if the string class is not implemented', ->
-            assert.throws (-> Precis.prepare stringClass: 111, ''), 'PRECIS string class not implemented.'
+            assert.throws (-> precis.prepare stringClass: 111, ''), 'PRECIS string class not implemented.'
 
         describe 'for FreeformClass string class profiles', ->
 
             beforeEach ->
-                @profile = stringClass: Precis.STRING_CLASS.FREEFORM, normalization: Precis.NORMALIZATION.NONE
+                @profile = stringClass: precis.STRING_CLASS.FREEFORM, normalization: precis.NORMALIZATION.NONE
 
             it 'allows characters in the FreeformClass string class', ->
-                assert.deepEqual Precis.prepare(@profile, ' !'), [0x0020, 0x0021]
+                assert.deepEqual precis.prepare(@profile, ' !'), [0x0020, 0x0021]
 
             it 'rejects characters outside the FreeformClass string class', ->
-                assert.throws (=> Precis.prepare @profile, "\u0000"), InvalidCodepointError
-                assert.throws (=> Precis.prepare @profile, "\u007F"), InvalidCodepointError
-                assert.throws (=> Precis.prepare @profile, "\u00B7"), InvalidCodepointError
-                assert.throws (=> Precis.prepare @profile, "\u0378"), InvalidCodepointError
-                assert.throws (=> Precis.prepare @profile, "\u200C"), InvalidCodepointError
+                assert.throws (=> precis.prepare @profile, "\u0000"), InvalidCodepointError
+                assert.throws (=> precis.prepare @profile, "\u007F"), InvalidCodepointError
+                assert.throws (=> precis.prepare @profile, "\u00B7"), InvalidCodepointError
+                assert.throws (=> precis.prepare @profile, "\u0378"), InvalidCodepointError
+                assert.throws (=> precis.prepare @profile, "\u200C"), InvalidCodepointError
 
         describe 'for IdentifierClass string class profiles', ->
 
             beforeEach ->
-                @profile = stringClass: Precis.STRING_CLASS.IDENTIFIER, normalization: Precis.NORMALIZATION.NONE
+                @profile = stringClass: precis.STRING_CLASS.IDENTIFIER, normalization: precis.NORMALIZATION.NONE
 
             it 'allows characters in the IdentifierClass string class', ->
-                assert.deepEqual Precis.prepare(@profile, '!'), [0x0021]
+                assert.deepEqual precis.prepare(@profile, '!'), [0x0021]
 
             it 'rejects characters outside the IdentifierClass string class', ->
-                assert.throws (=> Precis.prepare @profile, "\u0000"), InvalidCodepointError
-                assert.throws (=> Precis.prepare @profile, "\u0020"), InvalidCodepointError
-                assert.throws (=> Precis.prepare @profile, "\u007F"), InvalidCodepointError
-                assert.throws (=> Precis.prepare @profile, "\u00B7"), InvalidCodepointError
-                assert.throws (=> Precis.prepare @profile, "\u0378"), InvalidCodepointError
-                assert.throws (=> Precis.prepare @profile, "\u200C"), InvalidCodepointError
+                assert.throws (=> precis.prepare @profile, "\u0000"), InvalidCodepointError
+                assert.throws (=> precis.prepare @profile, "\u0020"), InvalidCodepointError
+                assert.throws (=> precis.prepare @profile, "\u007F"), InvalidCodepointError
+                assert.throws (=> precis.prepare @profile, "\u00B7"), InvalidCodepointError
+                assert.throws (=> precis.prepare @profile, "\u0378"), InvalidCodepointError
+                assert.throws (=> precis.prepare @profile, "\u200C"), InvalidCodepointError
 
     describe 'enforce()', ->
 
         it 'throws an error if the string class is not implemented', ->
-            assert.throws (-> Precis.enforce stringClass: 111, ''), 'PRECIS string class not implemented.'
+            assert.throws (-> precis.enforce stringClass: 111, ''), 'PRECIS string class not implemented.'
 
         describe 'for FreeformClass string class profiles', ->
 
             beforeEach ->
-                @profile = stringClass: Precis.STRING_CLASS.FREEFORM, normalization: Precis.NORMALIZATION.NONE
+                @profile = stringClass: precis.STRING_CLASS.FREEFORM, normalization: precis.NORMALIZATION.NONE
 
             it 'allows characters in the FreeformClass string class', ->
-                assert.strictEqual Precis.enforce(@profile, ' !'), ' !'
+                assert.strictEqual precis.enforce(@profile, ' !'), ' !'
 
             it 'rejects characters outside the FreeformClass string class', ->
-                assert.throws (=> Precis.enforce @profile, '\u0000'), InvalidCodepointError
-                assert.throws (=> Precis.enforce @profile, '\u007F'), InvalidCodepointError
-                assert.throws (=> Precis.enforce @profile, '\u00B7'), InvalidCodepointError
-                assert.throws (=> Precis.enforce @profile, '\u0378'), InvalidCodepointError
-                assert.throws (=> Precis.enforce @profile, '\u200C'), InvalidCodepointError
+                assert.throws (=> precis.enforce @profile, '\u0000'), InvalidCodepointError
+                assert.throws (=> precis.enforce @profile, '\u007F'), InvalidCodepointError
+                assert.throws (=> precis.enforce @profile, '\u00B7'), InvalidCodepointError
+                assert.throws (=> precis.enforce @profile, '\u0378'), InvalidCodepointError
+                assert.throws (=> precis.enforce @profile, '\u200C'), InvalidCodepointError
 
         describe 'for profiles with callbacks', ->
 
@@ -97,23 +97,23 @@ describe 'Precis', ->
                 passedCodepoints = null
                 passedPropertyReader = null
                 @profile =
-                    stringClass: Precis.STRING_CLASS.FREEFORM
-                    normalization: Precis.NORMALIZATION.NONE
+                    stringClass: precis.STRING_CLASS.FREEFORM
+                    normalization: precis.NORMALIZATION.NONE
                     map: (codepoints, propertyReader) ->
                         passedCodepoints = codepoints.slice()
                         passedPropertyReader = propertyReader
-                Precis.enforce @profile, 'ab'
+                precis.enforce @profile, 'ab'
 
                 assert.deepEqual passedCodepoints, [97, 98]
-                assert.strictEqual passedPropertyReader, Precis.propertyReader
+                assert.strictEqual passedPropertyReader, precis.propertyReader
 
             it 'calls the custom validation callback', ->
                 passedCodepoints = null
                 @profile =
-                    stringClass: Precis.STRING_CLASS.FREEFORM
-                    normalization: Precis.NORMALIZATION.NONE
+                    stringClass: precis.STRING_CLASS.FREEFORM
+                    normalization: precis.NORMALIZATION.NONE
                     validate: (codepoints) -> passedCodepoints = codepoints.slice()
-                Precis.enforce @profile, 'ab'
+                precis.enforce @profile, 'ab'
 
                 assert.deepEqual passedCodepoints, [97, 98]
 
@@ -121,51 +121,51 @@ describe 'Precis', ->
 
             it 'supports width mapping', ->
                 @profile =
-                    stringClass: Precis.STRING_CLASS.FREEFORM
-                    normalization: Precis.NORMALIZATION.NONE
-                    widthMapping: Precis.WIDTH_MAPPING.EAW
+                    stringClass: precis.STRING_CLASS.FREEFORM
+                    normalization: precis.NORMALIZATION.NONE
+                    widthMapping: precis.WIDTH_MAPPING.EAW
 
-                assert.strictEqual Precis.enforce(@profile, '\uFF61'), '\u3002'
+                assert.strictEqual precis.enforce(@profile, '\uFF61'), '\u3002'
 
         describe 'profile case mapping options', ->
 
             beforeEach ->
-                @profile = stringClass: Precis.STRING_CLASS.FREEFORM, normalization: Precis.NORMALIZATION.NONE
+                @profile = stringClass: precis.STRING_CLASS.FREEFORM, normalization: precis.NORMALIZATION.NONE
 
             it 'supports lowercase case mapping', ->
-                @profile.caseMapping = Precis.CASE_MAPPING.LOWERCASE
+                @profile.caseMapping = precis.CASE_MAPPING.LOWERCASE
 
-                assert.strictEqual Precis.enforce(@profile, 'Ab\u0370\u0371'), 'ab\u0371\u0371'
+                assert.strictEqual precis.enforce(@profile, 'Ab\u0370\u0371'), 'ab\u0371\u0371'
 
         describe 'profile normalization options', ->
 
             beforeEach ->
-                @profile = stringClass: Precis.STRING_CLASS.FREEFORM, normalization: Precis.NORMALIZATION.NONE
+                @profile = stringClass: precis.STRING_CLASS.FREEFORM, normalization: precis.NORMALIZATION.NONE
 
             it 'supports NFC normalization', ->
-                @profile.normalization = Precis.NORMALIZATION.C
-                actual = Precis.enforce @profile, '\u00F6\u0307o\u0308\u0307o\u0307\u0308\u2163'
+                @profile.normalization = precis.NORMALIZATION.C
+                actual = precis.enforce @profile, '\u00F6\u0307o\u0308\u0307o\u0307\u0308\u2163'
                 expected = '\u00F6\u0307\u00F6\u0307\u022F\u0308\u2163'
 
                 assert.deepEqual ucs2.decode(actual), ucs2.decode(expected)
 
             it 'supports NFD normalization', ->
-                @profile.normalization = Precis.NORMALIZATION.D
-                actual = Precis.enforce @profile, '\u00F6\u0307o\u0308\u0307o\u0307\u0308\u2163'
+                @profile.normalization = precis.NORMALIZATION.D
+                actual = precis.enforce @profile, '\u00F6\u0307o\u0308\u0307o\u0307\u0308\u2163'
                 expected = 'o\u0308\u0307o\u0308\u0307o\u0307\u0308\u2163'
 
                 assert.deepEqual ucs2.decode(actual), ucs2.decode(expected)
 
             it 'supports NFKC normalization', ->
-                @profile.normalization = Precis.NORMALIZATION.KC
-                actual = Precis.enforce @profile, '\u00F6\u0307o\u0308\u0307o\u0307\u0308\u2163'
+                @profile.normalization = precis.NORMALIZATION.KC
+                actual = precis.enforce @profile, '\u00F6\u0307o\u0308\u0307o\u0307\u0308\u2163'
                 expected = '\u00F6\u0307\u00F6\u0307\u022F\u0308IV'
 
                 assert.deepEqual ucs2.decode(actual), ucs2.decode(expected)
 
             it 'supports NFKD normalization', ->
-                @profile.normalization = Precis.NORMALIZATION.KD
-                actual = Precis.enforce @profile, '\u00F6\u0307o\u0308\u0307o\u0307\u0308\u2163'
+                @profile.normalization = precis.NORMALIZATION.KD
+                actual = precis.enforce @profile, '\u00F6\u0307o\u0308\u0307o\u0307\u0308\u2163'
                 expected = 'o\u0308\u0307o\u0308\u0307o\u0307\u0308IV'
 
                 assert.deepEqual ucs2.decode(actual), ucs2.decode(expected)
@@ -174,9 +174,9 @@ describe 'Precis', ->
 
             it 'supports directionality validation', ->
                 @profile =
-                    stringClass: Precis.STRING_CLASS.FREEFORM
-                    normalization: Precis.NORMALIZATION.NONE
-                    directionality: Precis.DIRECTIONALITY.BIDI
+                    stringClass: precis.STRING_CLASS.FREEFORM
+                    normalization: precis.NORMALIZATION.NONE
+                    directionality: precis.DIRECTIONALITY.BIDI
 
-                assert.doesNotThrow => Precis.enforce @profile, 'ab'
-                assert.throws (=> Precis.enforce @profile, '0'), InvalidDirectionalityError
+                assert.doesNotThrow => precis.enforce @profile, 'ab'
+                assert.throws (=> precis.enforce @profile, '0'), InvalidDirectionalityError

@@ -2,7 +2,7 @@ fs = require 'fs'
 UnicodeTrie = require 'unicode-trie'
 
 CodepointPropertyReader = require './unicode/CodepointPropertyReader'
-Precis = require './constants'
+precis = require './constants'
 PrecisEnforcer = require './PrecisEnforcer'
 PrecisPreparer = require './PrecisPreparer'
 
@@ -12,7 +12,7 @@ trie = new UnicodeTrie trieData
 propertyReader = new CodepointPropertyReader trie
 preparer = new PrecisPreparer propertyReader
 
-module.exports = Precis
+module.exports = precis
 
 module.exports.prepare = preparer.prepare.bind preparer
 

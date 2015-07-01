@@ -1,13 +1,13 @@
 EmptyStringError = require '../error/EmptyStringError'
-Precis = require '../constants'
+precis = require '../constants'
 
 module.exports = class NicknameProfile
 
-    stringClass: Precis.STRING_CLASS.FREEFORM
-    widthMapping: Precis.WIDTH_MAPPING.NONE
-    caseMapping: Precis.CASE_MAPPING.LOWERCASE
-    normalization: Precis.NORMALIZATION.KC
-    directionality: Precis.DIRECTIONALITY.NONE
+    stringClass: precis.STRING_CLASS.FREEFORM
+    widthMapping: precis.WIDTH_MAPPING.NONE
+    caseMapping: precis.CASE_MAPPING.LOWERCASE
+    normalization: precis.NORMALIZATION.KC
+    directionality: precis.DIRECTIONALITY.NONE
 
     map: (codepoints, propertyReader) ->
         i = codepoints.length - 1

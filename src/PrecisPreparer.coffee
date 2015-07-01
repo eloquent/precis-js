@@ -1,7 +1,7 @@
 {ucs2} = require 'punycode'
 
 InvalidCodepointError = require './error/InvalidCodepointError'
-Precis = require './constants'
+precis = require './constants'
 
 module.exports = class PrecisPreparer
 
@@ -13,8 +13,8 @@ module.exports = class PrecisPreparer
         codepoints = ucs2.decode string
 
         switch profile.stringClass
-            when Precis.STRING_CLASS.FREEFORM then @_freeform codepoints
-            when Precis.STRING_CLASS.IDENTIFIER then @_identifier codepoints
+            when precis.STRING_CLASS.FREEFORM then @_freeform codepoints
+            when precis.STRING_CLASS.IDENTIFIER then @_identifier codepoints
             else
                 throw new Error 'PRECIS string class not implemented.'
 
@@ -23,8 +23,8 @@ module.exports = class PrecisPreparer
     _freeform: (codepoints) ->
         for codepoint in codepoints
             category = @propertyReader.precisCategory codepoint
-            isValid = category is Precis.PRECIS_CATEGORY.PVALID or
-                category is Precis.PRECIS_CATEGORY.FREE_PVAL
+            isValid = category is precis.PRECIS_CATEGORY.PVALID or
+                category is precis.PRECIS_CATEGORY.FREE_PVAL
 
             unless isValid
                 throw new InvalidCodepointError "The codepoint #{codepoint} is
@@ -34,6 +34,6 @@ module.exports = class PrecisPreparer
         for codepoint in codepoints
             category = @propertyReader.precisCategory codepoint
 
-            if category isnt Precis.PRECIS_CATEGORY.PVALID
+            if category isnt precis.PRECIS_CATEGORY.PVALID
                 throw new InvalidCodepointError "The codepoint #{codepoint} is
                     not allowed in the 'IdentifierClass' string class."

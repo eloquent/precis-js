@@ -1,5 +1,5 @@
 EmptyStringError = require '../../../src/error/EmptyStringError'
-Precis = require '../../../src/constants'
+precis = require '../../../src/constants'
 UsernameCaseMappedProfile = require '../../../src/profile/UsernameCaseMappedProfile'
 
 describe 'UsernameCaseMappedProfile', ->
@@ -8,11 +8,11 @@ describe 'UsernameCaseMappedProfile', ->
         @subject = new UsernameCaseMappedProfile()
 
     it 'has the correct properties', ->
-        assert.strictEqual @subject.stringClass, Precis.STRING_CLASS.IDENTIFIER
-        assert.strictEqual @subject.widthMapping, Precis.WIDTH_MAPPING.EAW
-        assert.strictEqual @subject.caseMapping, Precis.CASE_MAPPING.LOWERCASE
-        assert.strictEqual @subject.normalization, Precis.NORMALIZATION.C
-        assert.strictEqual @subject.directionality, Precis.DIRECTIONALITY.BIDI
+        assert.strictEqual @subject.stringClass, precis.STRING_CLASS.IDENTIFIER
+        assert.strictEqual @subject.widthMapping, precis.WIDTH_MAPPING.EAW
+        assert.strictEqual @subject.caseMapping, precis.CASE_MAPPING.LOWERCASE
+        assert.strictEqual @subject.normalization, precis.NORMALIZATION.C
+        assert.strictEqual @subject.directionality, precis.DIRECTIONALITY.BIDI
 
     describe 'validate()', ->
 

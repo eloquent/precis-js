@@ -3,13 +3,13 @@
 fs = require 'fs'
 UnicodeTrieBuilder = require 'unicode-trie/builder'
 
-Precis = require '../src/constants'
+precis = require '../src/constants'
 
 log2 = Math.log2 or (n) -> Math.log(n) / Math.LN2
 bits = (n) -> (log2(n) + 1) | 0
 
-precisBits = bits Object.keys(Precis.PRECIS_CATEGORY).length - 1
-bidiBits = bits Object.keys(Precis.BIDI_CLASS).length - 1
+precisBits = bits Object.keys(precis.PRECIS_CATEGORY).length - 1
+bidiBits = bits Object.keys(precis.BIDI_CLASS).length - 1
 
 precisShift = bidiBits + 1
 bidiShift = 1
@@ -22,8 +22,8 @@ widthMappings = []
 for data in codepoints
     continue unless data?
 
-    precisCategory = Precis.PRECIS_CATEGORY[precisData[data.code.toString()]] or 0
-    bidiClass = Precis.BIDI_CLASS[data.bidiClass] or 0
+    precisCategory = precis.PRECIS_CATEGORY[precisData[data.code.toString()]] or 0
+    bidiClass = precis.BIDI_CLASS[data.bidiClass] or 0
     nonAsciiSpace = if data.category is 'Zs' and data.code isnt 0x20 then 1 else 0
 
     trie.set data.code,

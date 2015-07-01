@@ -1,4 +1,4 @@
-Precis = require '../constants'
+precis = require '../constants'
 {ucs2} = require 'punycode'
 
 module.exports = class Normalizer
@@ -7,7 +7,7 @@ module.exports = class Normalizer
         @_isNative = String.prototype.normalize?
 
     normalize: (form, codepoints) ->
-        return codepoints if form is Precis.NORMALIZATION.NONE
+        return codepoints if form is precis.NORMALIZATION.NONE
         return @_normalizeNative form, codepoints if @_isNative
         return @_normalizeUnorm form, codepoints if @unorm?
 
@@ -18,13 +18,13 @@ module.exports = class Normalizer
         string = ucs2.encode codepoints
 
         switch form
-            when Precis.NORMALIZATION.C
+            when precis.NORMALIZATION.C
                 string = string.normalize 'NFC'
-            when Precis.NORMALIZATION.D
+            when precis.NORMALIZATION.D
                 string = string.normalize 'NFD'
-            when Precis.NORMALIZATION.KC
+            when precis.NORMALIZATION.KC
                 string = string.normalize 'NFKC'
-            when Precis.NORMALIZATION.KD
+            when precis.NORMALIZATION.KD
                 string = string.normalize 'NFKD'
             else
                 throw new Error 'Normalization form not implemented.'
@@ -35,13 +35,13 @@ module.exports = class Normalizer
         string = ucs2.encode codepoints
 
         switch form
-            when Precis.NORMALIZATION.C
+            when precis.NORMALIZATION.C
                 string = @unorm.nfc string
-            when Precis.NORMALIZATION.D
+            when precis.NORMALIZATION.D
                 string = @unorm.nfd string
-            when Precis.NORMALIZATION.KC
+            when precis.NORMALIZATION.KC
                 string = @unorm.nfkc string
-            when Precis.NORMALIZATION.KD
+            when precis.NORMALIZATION.KD
                 string = @unorm.nfkd string
             else
                 throw new Error 'Normalization form not implemented.'

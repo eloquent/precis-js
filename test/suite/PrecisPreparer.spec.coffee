@@ -3,7 +3,7 @@ UnicodeTrie = require 'unicode-trie'
 
 CodepointPropertyReader = require '../../src/unicode/CodepointPropertyReader'
 InvalidCodepointError = require '../../src/error/InvalidCodepointError'
-Precis = require '../../src/constants'
+precis = require '../../src/constants'
 PrecisPreparer = require '../../src/PrecisPreparer'
 
 describe 'PrecisPreparer', ->
@@ -30,7 +30,7 @@ describe 'PrecisPreparer', ->
         describe 'for FreeformClass string class profiles', ->
 
             beforeEach ->
-                @profile = stringClass: Precis.STRING_CLASS.FREEFORM
+                @profile = stringClass: precis.STRING_CLASS.FREEFORM
 
             it 'allows characters in the FreeformClass string class', ->
                 assert.deepEqual @subject.prepare(@profile, ' !'), [0x0020, 0x0021]
@@ -45,7 +45,7 @@ describe 'PrecisPreparer', ->
         describe 'for IdentifierClass string class profiles', ->
 
             beforeEach ->
-                @profile = stringClass: Precis.STRING_CLASS.IDENTIFIER
+                @profile = stringClass: precis.STRING_CLASS.IDENTIFIER
 
             it 'allows characters in the IdentifierClass string class', ->
                 assert.deepEqual @subject.prepare(@profile, '!'), [0x0021]

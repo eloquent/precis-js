@@ -1,4 +1,4 @@
-Precis = require './constants'
+precis = require './constants'
 {ucs2} = require 'punycode'
 
 module.exports = class PrecisEnforcer
@@ -16,7 +16,7 @@ module.exports = class PrecisEnforcer
 
         if typeof profile.mapWidth is 'function'
             profile.mapWidth codepoints
-        else if profile.widthMapping is Precis.WIDTH_MAPPING.EAW
+        else if profile.widthMapping is precis.WIDTH_MAPPING.EAW
             @widthMapper.map codepoints
 
         if typeof profile.map is 'function'
@@ -24,7 +24,7 @@ module.exports = class PrecisEnforcer
 
         if typeof profile.mapCase is 'function'
             profile.mapCase codepoints
-        else if profile.caseMapping is Precis.CASE_MAPPING.LOWERCASE
+        else if profile.caseMapping is precis.CASE_MAPPING.LOWERCASE
             codepoints = ucs2.decode ucs2.encode(codepoints).toLowerCase()
 
         if typeof profile.normalize is 'function'
@@ -34,7 +34,7 @@ module.exports = class PrecisEnforcer
 
         if typeof profile.validateDirectionality is 'function'
             profile.validateDirectionality codepoints
-        else if profile.directionality is Precis.DIRECTIONALITY.BIDI
+        else if profile.directionality is precis.DIRECTIONALITY.BIDI
             @directionalityValidator.validate codepoints
 
         profile.validate codepoints if typeof profile.validate is 'function'
