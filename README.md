@@ -25,3 +25,27 @@ npm install --save precis-js
 [NPM]: http://npmjs.org/
 [precis-js]: https://www.npmjs.com/package/precis-js
 -->
+
+## Node.js usage
+
+```js
+precis = require('precis-js');
+profile = new precis.profile.UsernameCaseMappedProfile();
+
+result = precis.enforce profile, 'username'
+```
+
+## Browser usage
+
+This package supports browsers via [Browserify] and the [brfs] transform.
+However, a sizable amount of Unicode data is required for full functionality.
+
+For this reason, *PRECIS-JS* provides a choice of three modules, depending on
+the required features:
+
+- The `precis-js/prepare` module includes the `precis.prepare()` function.
+
+[brfs]: https://github.com/substack/brfs
+[Browserify]: http://browserify.org/
+[String.prototype.normalize]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/normalize
+[unorm]: https://github.com/walling/unorm
