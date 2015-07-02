@@ -40,7 +40,7 @@ article [Creative usernames and Spotify account hijacking] does a good job of
 explaining the scope of the problem.
 
 The PRECIS Framework obsoletes stringprep ([RFC 3454]) the previous de-facto
-solution for handling Unicode usernames and passwords. It takes a more
+solution for handling Unicode usernames and passwords. PRECIS takes a more
 sustainable approach than stringprep, because it is designed to adapt to future
 versions of Unicode.
 
