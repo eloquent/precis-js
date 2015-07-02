@@ -153,9 +153,10 @@ string comparison. This can be accomplished via JavaScript's
   Usernames and Passwords].
 
 Custom profiles are also possible, and are very simple to implement. For now,
-this is left as an exercise for the reader. Please see the included profiles for
-example code.
+this is left as an exercise for the reader. Please see the [included profiles]
+for sample code.
 
+[included profiles]: src/profile
 [Nickname Profile]: https://tools.ietf.org/html/draft-ietf-precis-nickname-17#section-2
 [OpaqueString Profile]: https://tools.ietf.org/html/draft-ietf-precis-saslprepbis-18#section-4.2
 [Preparation, Enforcement, and Comparison of Internationalized Strings Representing Nicknames]: https://tools.ietf.org/html/draft-ietf-precis-nickname-17
