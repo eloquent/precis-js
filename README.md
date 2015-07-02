@@ -65,7 +65,7 @@ try {
 
 This package supports browser usage via [Browserify] and the [brfs] transform.
 However, there are important caveats that may adversely affect the size of the
-Browserify bundle.
+Browserify bundle. See the [Modules] section for more information.
 
 In a typical server-client scenario, it is recommended to use the *prepare only*
 module provided by *PRECIS-JS*:
@@ -83,8 +83,7 @@ try {
 
 [brfs]: https://github.com/substack/brfs
 [Browserify]: http://browserify.org/
-[String.prototype.normalize]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/normalize
-[unorm]: https://github.com/walling/unorm
+[Modules]: #modules
 
 ## API
 
@@ -163,3 +162,37 @@ for sample code.
 [Preparation, Enforcement, and Comparison of Internationalized Strings Representing Usernames and Passwords]: https://tools.ietf.org/html/draft-ietf-precis-saslprepbis-18
 [UsernameCaseMapped Profile]: https://tools.ietf.org/html/draft-ietf-precis-saslprepbis-18#section-3.2
 [UsernameCasePreserved Profile]: https://tools.ietf.org/html/draft-ietf-precis-saslprepbis-18#section-3.3
+
+## Modules
+
+*PRECIS-JS* provides several alternate versions of the primary `precis-js`
+module. These are useful when code size is an issue, such as in a browser.
+
+When using *PRECIS-JS*, the primary contributor to code size is the Unicode data
+that must be included to implement the various algorithms of PRECIS. The data
+used directly by PRECIS constitutes approximately **12KB**. There is no way to
+avoid including this data.
+
+In addition, unless the ECMAScript 6 [String.prototype.normalize] function is
+available, *PRECIS-JS* requires the [unorm] package in order to implement the
+[Enforcement] API. This adds approximately **150KB** of Unicode normalization
+data. Fortunately, the [Preparation] API, which does not require this data,
+should be sufficient for typical client usage.
+
+The available modules are as follows:
+
+- The `precis-js` module includes both the [Preparation], and [Enforcement]
+  APIs, but assumes the presence of [unorm], and hence produces the biggest
+  size.
+- The `precis-js/enforce` module is an alias for the `precis-js` module.
+- The `precis-js/enforce-es6` module is for use when
+  [String.prototype.normalize] is guaranteed to be available. It includes both
+  the [Preparation], and [Enforcement] APIs, but does not require the [unorm]
+  package. This is the best of both worlds, if you can use it.
+- The `precis-js/prepare` module includes only the [Preparation] API, and hence
+  produces the smallest possible size. Suitable for clients in a typical
+  client-server scenario.
+
+[Enforcement]: #enforcement
+[String.prototype.normalize]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/normalize
+[unorm]: https://github.com/walling/unorm
