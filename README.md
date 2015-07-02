@@ -1,6 +1,6 @@
 # PRECIS-JS
 
-*A JavaScript implementation of RFC 7564 (PRECIS Framework).*
+*A JavaScript implementation of RFC 7564 (The PRECIS Framework).*
 
 [![The most recent stable version is 0.0.0][version-image]][Semantic versioning]
 [![Current build status image][build-image]][Current build status]
