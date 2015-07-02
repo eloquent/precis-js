@@ -131,3 +131,34 @@ string comparison. This can be accomplished via JavaScript's
 [identity operator (===)].
 
 [identity operator (===)]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Comparison_Operators#Identity_strict_equality_()
+
+### Profiles
+
+*PRECIS-JS* provides a few standard PRECIS profiles, all of which live in the
+`precis.profile` module. Each profile is implemented as a class:
+
+- `precis.profile.NicknameProfile` is an implementation of the [Nickname
+  Profile] found in the draft specification [Preparation, Enforcement, and
+  Comparison of Internationalized Strings Representing Nicknames].
+- `precis.profile.OpaqueStringProfile` is an implementation of the [OpaqueString
+  Profile] found in the draft specification [Preparation, Enforcement, and
+  Comparison of Internationalized Strings Representing Usernames and Passwords].
+- `precis.profile.UsernameCaseMappedProfile` is an implementation of the
+  [UsernameCaseMapped Profile] found in the draft specification [Preparation,
+  Enforcement, and Comparison of Internationalized Strings Representing
+  Usernames and Passwords].
+- `precis.profile.UsernameCasePreservedProfile` is an implementation of the
+  [UsernameCasePreserved Profile] found in the draft specification [Preparation,
+  Enforcement, and Comparison of Internationalized Strings Representing
+  Usernames and Passwords].
+
+Custom profiles are also possible, and are very simple to implement. For now,
+this is left as an exercise for the reader. Please see the included profiles for
+example code.
+
+[Nickname Profile]: https://tools.ietf.org/html/draft-ietf-precis-nickname-17#section-2
+[OpaqueString Profile]: https://tools.ietf.org/html/draft-ietf-precis-saslprepbis-18#section-4.2
+[Preparation, Enforcement, and Comparison of Internationalized Strings Representing Nicknames]: https://tools.ietf.org/html/draft-ietf-precis-nickname-17
+[Preparation, Enforcement, and Comparison of Internationalized Strings Representing Usernames and Passwords]: https://tools.ietf.org/html/draft-ietf-precis-saslprepbis-18
+[UsernameCaseMapped Profile]: https://tools.ietf.org/html/draft-ietf-precis-saslprepbis-18#section-3.2
+[UsernameCasePreserved Profile]: https://tools.ietf.org/html/draft-ietf-precis-saslprepbis-18#section-3.3
