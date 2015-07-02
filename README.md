@@ -194,5 +194,6 @@ The available modules are as follows:
   client-server scenario.
 
 [Enforcement]: #enforcement
+[Preparation]: #preparation
 [String.prototype.normalize]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/normalize
 [unorm]: https://github.com/walling/unorm
