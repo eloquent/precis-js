@@ -182,8 +182,7 @@ should be sufficient for typical client usage.
 The available modules are as follows:
 
 - The `precis-js` module includes both the [Preparation], and [Enforcement]
-  APIs, but assumes the presence of [unorm], and hence produces the biggest
-  size.
+  APIs, but requires [unorm], and hence produces the biggest size.
 - The `precis-js/enforce` module is an alias for the `precis-js` module.
 - The `precis-js/enforce-es6` module is for use when
   [String.prototype.normalize] is guaranteed to be available. It includes both
