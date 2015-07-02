@@ -36,10 +36,10 @@ systems. In a general sense, PRECIS encompasses what needs to be done to
 The introduction of Unicode usernames and passwords comes with its own set of
 challenges, especially in terms of security and usability. Spotify faced many of
 these challenges when they decided to implement Unicode usernames, and the
-article "[Creative usernames and Spotify account hijacking]" does a good job
+article [Creative usernames and Spotify account hijacking] does a good job of
 explaining the scope of the problem.
 
-PRECIS / [RFC 7564] obsoletes stringprep ([RFC 3454]) the previous de-facto
+The PRECIS Framework obsoletes stringprep ([RFC 3454]) the previous de-facto
 solution for handling Unicode usernames and passwords. It takes a more
 sustainable approach than stringprep, because it is designed to adapt to future
 versions of Unicode.
@@ -55,7 +55,7 @@ precis = require('precis-js');
 profile = new precis.profile.UsernameCaseMappedProfile();
 
 try {
-    result = precis.enforce(profile, 'username');
+    result = precis.enforce(profile, string);
 } catch (e) {
     // handle error
 }
@@ -68,14 +68,14 @@ However, there are important caveats that may adversely affect the size of the
 Browserify bundle.
 
 In a typical server-client scenario, it is recommended to use the *prepare only*
-PRECIS module provided by *PRECIS-JS*:
+module provided by *PRECIS-JS*:
 
 ```js
 precis = require('precis-js/prepare');
 profile = new precis.profile.UsernameCaseMappedProfile();
 
 try {
-    result = precis.prepare(profile, 'username');
+    result = precis.prepare(profile, string);
 } catch (e) {
     // handle error
 }
@@ -100,16 +100,16 @@ precis.prepare(profile, string)
 
 - Where `profile` is a profile object, and `string` is the string to prepare.
 - Throws an exception if `string` is invalid for `profile`.
-- Available in all modules.
+- Available in all *PRECIS-JS* modules.
 - Return type is not guaranteed, and may change in future versions without
   warning.
 
 ### Enforcement
 
-Enforcement is a more complete process than preparation, and involves not only
-checking the string against the rules of a profile, but producing a canonical
-result string. In a sense, enforcement is a type of normalization, and in fact
-usually involves Unicode normalization as a part of the process.
+Enforcement involves not only checking the string against the rules of a
+profile, but producing a canonical result string. In a sense, enforcement is a
+type of normalization, and in fact usually involves Unicode normalization as a
+part of the process.
 
 The result of enforcement is the string that should be considered the canonical
 version of the input string:
