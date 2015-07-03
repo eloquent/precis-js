@@ -37,7 +37,7 @@
     "browserify": "^10.2.4",
     "chai": "^3.0.0",
     "codecov.io": "^0.1.4",
-    "codepoints": "^1.1.0",
+    "codepoints": "ezzatron/codepoints#unicode-8",
     "coffee-coverage": "^0.6.2",
     "coffee-script": "^1.9.2",
     "coffeeify": "^1.1.0",
