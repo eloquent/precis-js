@@ -16,7 +16,7 @@ describe 'NicknameProfile', ->
     beforeEach ->
         @subject = new NicknameProfile()
 
-        @propertyReader = new CodepointPropertyReader @trie
+        @enforcer = propertyReader: new CodepointPropertyReader @trie
 
     it 'has the correct properties', ->
         assert.strictEqual @subject.stringClass, precis.STRING_CLASS.FREEFORM
@@ -29,37 +29,37 @@ describe 'NicknameProfile', ->
 
         it 'right-trims strings', ->
             codepoints = ucs2.decode 'ab  '
-            @subject.map codepoints, @propertyReader
+            @subject.map codepoints, @enforcer
 
             assert.strictEqual ucs2.encode(codepoints), 'ab'
 
         it 'left-trims strings', ->
             codepoints = ucs2.decode '  ab'
-            @subject.map codepoints, @propertyReader
+            @subject.map codepoints, @enforcer
 
             assert.strictEqual ucs2.encode(codepoints), 'ab'
 
         it 'trims strings', ->
             codepoints = ucs2.decode '  ab  '
-            @subject.map codepoints, @propertyReader
+            @subject.map codepoints, @enforcer
 
             assert.strictEqual ucs2.encode(codepoints), 'ab'
 
         it 'collapses inner whitespace', ->
             codepoints = ucs2.decode 'ab  cd  ef'
-            @subject.map codepoints, @propertyReader
+            @subject.map codepoints, @enforcer
 
             assert.strictEqual ucs2.encode(codepoints), 'ab cd ef'
 
         it 'collapses inner whitespace and trims at the same time', ->
             codepoints = ucs2.decode '  ab  cd  ef  '
-            @subject.map codepoints, @propertyReader
+            @subject.map codepoints, @enforcer
 
             assert.strictEqual ucs2.encode(codepoints), 'ab cd ef'
 
         it 'maps non-ASCII spaces to ASCII spaces', ->
             codepoints = ucs2.decode '\u3000ab\u3000cd\u3000ef\u3000'
-            @subject.map codepoints, @propertyReader
+            @subject.map codepoints, @enforcer
 
             assert.strictEqual ucs2.encode(codepoints), 'ab cd ef'
 

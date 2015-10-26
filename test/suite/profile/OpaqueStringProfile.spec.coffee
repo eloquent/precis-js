@@ -16,7 +16,7 @@ describe 'OpaqueStringProfile', ->
     beforeEach ->
         @subject = new OpaqueStringProfile()
 
-        @propertyReader = new CodepointPropertyReader @trie
+        @enforcer = propertyReader: new CodepointPropertyReader @trie
 
     it 'has the correct properties', ->
         assert.strictEqual @subject.stringClass, precis.STRING_CLASS.FREEFORM
@@ -29,7 +29,7 @@ describe 'OpaqueStringProfile', ->
 
         it 'maps non-ASCII spaces to ASCII spaces', ->
             codepoints = ucs2.decode '\u3000ab\u3000cd\u3000ef\u3000'
-            @subject.map codepoints, @propertyReader
+            @subject.map codepoints, @enforcer
 
             assert.strictEqual ucs2.encode(codepoints), ' ab cd ef '
 

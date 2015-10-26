@@ -9,13 +9,14 @@ module.exports = class NicknameProfile
     normalization: precis.NORMALIZATION.KC
     directionality: precis.DIRECTIONALITY.NONE
 
-    map: (codepoints, propertyReader) ->
+    map: (codepoints, enforcer) ->
         i = codepoints.length - 1
         last = i
         state = 0
 
         while i >= 0
-            codepoints[i] = 0x20 if propertyReader.isNonAsciiSpace codepoints[i]
+            if enforcer.propertyReader.isNonAsciiSpace codepoints[i]
+                codepoints[i] = 0x20
 
             switch state
                 when 0 # end of string

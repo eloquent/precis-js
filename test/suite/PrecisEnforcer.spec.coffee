@@ -83,27 +83,31 @@ describe 'PrecisEnforcer', ->
 
             it 'calls the custom mapping callback', ->
                 passedCodepoints = null
-                passedPropertyReader = null
+                passedEnforcer = null
                 @profile =
                     stringClass: precis.STRING_CLASS.FREEFORM
                     normalization: precis.NORMALIZATION.NONE
-                    map: (codepoints, propertyReader) ->
+                    map: (codepoints, enforcer) ->
                         passedCodepoints = codepoints.slice()
-                        passedPropertyReader = propertyReader
+                        passedEnforcer = enforcer
                 @subject.enforce @profile, 'ab'
 
                 assert.deepEqual passedCodepoints, [97, 98]
-                assert.strictEqual passedPropertyReader, @propertyReader
+                assert.strictEqual passedEnforcer, @subject
 
             it 'calls the custom validation callback', ->
                 passedCodepoints = null
+                passedEnforcer = null
                 @profile =
                     stringClass: precis.STRING_CLASS.FREEFORM
                     normalization: precis.NORMALIZATION.NONE
-                    validate: (codepoints) -> passedCodepoints = codepoints.slice()
+                    validate: (codepoints, enforcer) ->
+                        passedCodepoints = codepoints.slice()
+                        passedEnforcer = enforcer
                 @subject.enforce @profile, 'ab'
 
                 assert.deepEqual passedCodepoints, [97, 98]
+                assert.strictEqual passedEnforcer, @subject
 
         describe 'profile width mapping options', ->
 

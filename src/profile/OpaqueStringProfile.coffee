@@ -9,9 +9,10 @@ module.exports = class OpaqueStringProfile
     normalization: precis.NORMALIZATION.C
     directionality: precis.DIRECTIONALITY.NONE
 
-    map: (codepoints, propertyReader) ->
+    map: (codepoints, enforcer) ->
         for codepoint, i in codepoints
-            codepoints[i] = 0x20 if propertyReader.isNonAsciiSpace codepoint
+            if enforcer.propertyReader.isNonAsciiSpace codepoint
+                codepoints[i] = 0x20
 
     validate: (codepoints) ->
         throw new EmptyStringError() if codepoints.length < 1

@@ -8,11 +8,15 @@ module.exports = class PrecisPreparer
     constructor: (@propertyReader) ->
 
     prepare: (profile, string) ->
-        return profile.prepare string if typeof profile.prepare is 'function'
+        return profile.prepare string, @ if typeof profile.prepare is 'function'
 
         codepoints = ucs2.decode string
+        @validateStringClass profile.stringClass, codepoints
 
-        switch profile.stringClass
+        codepoints
+
+    validateStringClass: (stringClass, codepoints) ->
+        switch stringClass
             when precis.STRING_CLASS.FREEFORM then @_freeform codepoints
             when precis.STRING_CLASS.IDENTIFIER then @_identifier codepoints
             else

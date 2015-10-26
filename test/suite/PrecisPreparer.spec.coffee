@@ -22,7 +22,7 @@ describe 'PrecisPreparer', ->
             @profile = prepare: sinon.spy()
             @subject.prepare @profile, 'ab'
 
-            sinon.assert.calledWith @profile.prepare, 'ab'
+            sinon.assert.calledWith @profile.prepare, 'ab', @subject
 
         it 'throws an error if the string class is not implemented', ->
             assert.throws (=> @subject.prepare stringClass: 111, ''), 'PRECIS string class not implemented.'
