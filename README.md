@@ -151,9 +151,9 @@ this is left as an exercise for the reader. Please see the [included profiles]
 for sample code.
 
 [included profiles]: src/profile
-[nickname profile]: https://tools.ietf.org/html/draft-ietf-precis-nickname-17#section-2
+[nickname profile]: https://tools.ietf.org/html/draft-ietf-precis-nickname-19#section-2
 [opaquestring profile]: https://tools.ietf.org/html/rfc7613#section-4.2
-[preparation, enforcement, and comparison of internationalized strings representing nicknames]: https://tools.ietf.org/html/draft-ietf-precis-nickname-17
+[preparation, enforcement, and comparison of internationalized strings representing nicknames]: https://tools.ietf.org/html/draft-ietf-precis-nickname-19
 [rfc 7613]: https://tools.ietf.org/html/rfc7613
 [usernamecasemapped profile]: https://tools.ietf.org/html/rfc7613#section-3.2
 [usernamecasepreserved profile]: https://tools.ietf.org/html/rfc7613#section-3.3
