@@ -5,16 +5,20 @@ CodepointPropertyReader = require '../../src/unicode/CodepointPropertyReader'
 InvalidCodepointError = require '../../src/error/InvalidCodepointError'
 precis = require '../../src/constants'
 PrecisPreparer = require '../../src/PrecisPreparer'
+WidthMapper = require '../../src/unicode/WidthMapper'
 
 describe 'PrecisPreparer', ->
 
     before ->
-        data = fs.readFileSync __dirname + '/../../data/properties.trie'
-        @trie = new UnicodeTrie data
+        trieData = fs.readFileSync __dirname + '/../../data/properties.trie'
+        widthMappingData = JSON.parse fs.readFileSync __dirname + '/../../data/width-mapping.json'
+
+        @trie = new UnicodeTrie trieData
+        @propertyReader = new CodepointPropertyReader @trie
+        @widthMapper = new WidthMapper widthMappingData
 
     beforeEach ->
-        @propertyReader = new CodepointPropertyReader @trie
-        @subject = new PrecisPreparer @propertyReader
+        @subject = new PrecisPreparer @propertyReader, @widthMapper
 
     describe 'prepare()', ->
 
@@ -23,6 +27,19 @@ describe 'PrecisPreparer', ->
             @subject.prepare @profile, 'ab'
 
             sinon.assert.calledWith @profile.prepare, 'ab', @subject
+
+        it 'supports custom pre-prepare mapping logic', ->
+            passedCodepoints = [-1, -1]
+            @profile =
+                stringClass: precis.STRING_CLASS.FREEFORM
+                prePrepareMap: (codepoints) ->
+                    passedCodepoints[0] = codepoints[0]
+                    passedCodepoints[1] = codepoints[1]
+                    codepoints[0] = 111
+                    codepoints[1] = 222
+
+            assert.deepEqual @subject.prepare(@profile, 'ab'), [111, 222]
+            assert.deepEqual passedCodepoints, [97, 98]
 
         it 'throws an error if the string class is not implemented', ->
             assert.throws (=> @subject.prepare stringClass: 111, ''), 'PRECIS string class not implemented.'

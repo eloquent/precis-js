@@ -2,15 +2,15 @@
 
 *A JavaScript implementation of RFC 7564 (The PRECIS Framework).*
 
-[![The most recent stable version is 0.0.0][version-image]][Semantic versioning]
-[![Current build status image][build-image]][Current build status]
-[![Current coverage status image][coverage-image]][Current coverage status]
+[![The most recent stable version is 0.0.0][version-image]][semantic versioning]
+[![Current build status image][build-image]][current build status]
+[![Current coverage status image][coverage-image]][current coverage status]
 
 [build-image]: http://img.shields.io/travis/ezzatron/precis-js/develop.svg?style=flat-square "Current build status for the develop branch"
 [coverage-image]: https://img.shields.io/codecov/c/github/ezzatron/precis-js/develop.svg?style=flat "Current test coverage"
-[Current build status]: https://travis-ci.org/ezzatron/precis-js
-[Current coverage status]: https://coveralls.io/r/ezzatron/precis-js
-[Semantic versioning]: http://semver.org/
+[current build status]: https://travis-ci.org/ezzatron/precis-js
+[current coverage status]: https://coveralls.io/r/ezzatron/precis-js
+[semantic versioning]: http://semver.org/
 [version-image]: http://img.shields.io/:semver-0.0.0-red.svg?style=flat-square "This project uses semantic versioning"
 
 <!--
@@ -22,7 +22,7 @@ Available as [NPM] package [precis-js]:
 npm install --save precis-js
 ```
 
-[NPM]: http://npmjs.org/
+[npm]: http://npmjs.org/
 [precis-js]: https://www.npmjs.com/package/precis-js
 -->
 
@@ -44,9 +44,9 @@ solution for handling Unicode usernames and passwords. PRECIS takes a more
 sustainable approach than stringprep, because it is designed to adapt to future
 versions of Unicode.
 
-[Creative usernames and Spotify account hijacking]: https://labs.spotify.com/2013/06/18/creative-usernames/
-[RFC 3454]: https://tools.ietf.org/html/rfc3454
-[RFC 7564]: https://tools.ietf.org/html/rfc7564
+[creative usernames and spotify account hijacking]: https://labs.spotify.com/2013/06/18/creative-usernames/
+[rfc 3454]: https://tools.ietf.org/html/rfc3454
+[rfc 7564]: https://tools.ietf.org/html/rfc7564
 
 ## Node.js usage
 
@@ -82,8 +82,8 @@ try {
 ```
 
 [brfs]: https://github.com/substack/brfs
-[Browserify]: http://browserify.org/
-[Modules]: #modules
+[browserify]: http://browserify.org/
+[modules]: #modules
 
 ## API
 
@@ -140,28 +140,23 @@ string comparison. This can be accomplished via JavaScript's
   Profile] found in the draft specification [Preparation, Enforcement, and
   Comparison of Internationalized Strings Representing Nicknames].
 - `precis.profile.OpaqueStringProfile` is an implementation of the [OpaqueString
-  Profile] found in the draft specification [Preparation, Enforcement, and
-  Comparison of Internationalized Strings Representing Usernames and Passwords].
+  Profile] found in [RFC 7613].
 - `precis.profile.UsernameCaseMappedProfile` is an implementation of the
-  [UsernameCaseMapped Profile] found in the draft specification [Preparation,
-  Enforcement, and Comparison of Internationalized Strings Representing
-  Usernames and Passwords].
+  [UsernameCaseMapped Profile] found in [RFC 7613].
 - `precis.profile.UsernameCasePreservedProfile` is an implementation of the
-  [UsernameCasePreserved Profile] found in the draft specification [Preparation,
-  Enforcement, and Comparison of Internationalized Strings Representing
-  Usernames and Passwords].
+  [UsernameCasePreserved Profile] found in [RFC 7613].
 
 Custom profiles are also possible, and are very simple to implement. For now,
 this is left as an exercise for the reader. Please see the [included profiles]
 for sample code.
 
 [included profiles]: src/profile
-[Nickname Profile]: https://tools.ietf.org/html/draft-ietf-precis-nickname-17#section-2
-[OpaqueString Profile]: https://tools.ietf.org/html/draft-ietf-precis-saslprepbis-18#section-4.2
-[Preparation, Enforcement, and Comparison of Internationalized Strings Representing Nicknames]: https://tools.ietf.org/html/draft-ietf-precis-nickname-17
-[Preparation, Enforcement, and Comparison of Internationalized Strings Representing Usernames and Passwords]: https://tools.ietf.org/html/draft-ietf-precis-saslprepbis-18
-[UsernameCaseMapped Profile]: https://tools.ietf.org/html/draft-ietf-precis-saslprepbis-18#section-3.2
-[UsernameCasePreserved Profile]: https://tools.ietf.org/html/draft-ietf-precis-saslprepbis-18#section-3.3
+[nickname profile]: https://tools.ietf.org/html/draft-ietf-precis-nickname-17#section-2
+[opaquestring profile]: https://tools.ietf.org/html/rfc7613#section-4.2
+[preparation, enforcement, and comparison of internationalized strings representing nicknames]: https://tools.ietf.org/html/draft-ietf-precis-nickname-17
+[rfc 7613]: https://tools.ietf.org/html/rfc7613
+[usernamecasemapped profile]: https://tools.ietf.org/html/rfc7613#section-3.2
+[usernamecasepreserved profile]: https://tools.ietf.org/html/rfc7613#section-3.3
 
 ## Modules
 
@@ -192,7 +187,7 @@ The available modules are as follows:
   produces the smallest possible size. Suitable for clients in a typical
   client-server scenario.
 
-[Enforcement]: #enforcement
-[Preparation]: #preparation
-[String.prototype.normalize]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/normalize
+[enforcement]: #enforcement
+[preparation]: #preparation
+[string.prototype.normalize]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/normalize
 [unorm]: https://github.com/walling/unorm

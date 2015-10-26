@@ -5,12 +5,16 @@ precis = require './constants'
 
 module.exports = class PrecisPreparer
 
-    constructor: (@propertyReader) ->
+    constructor: (@propertyReader, @widthMapper) ->
 
     prepare: (profile, string) ->
         return profile.prepare string, @ if typeof profile.prepare is 'function'
 
         codepoints = ucs2.decode string
+
+        if typeof profile.prePrepareMap is 'function'
+            profile.prePrepareMap codepoints, @
+
         @validateStringClass profile.stringClass, codepoints
 
         codepoints
