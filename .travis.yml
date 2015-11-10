@@ -1,5 +1,5 @@
 sudo: false
 language: node_js
 node_js: ["0.10", "0.12", "4.0", "4.1", "5.0", "iojs"]
-script: bin/coverage
+script: scripts/coverage
 after_script: node_modules/codecov.io/bin/codecov.io.js < coverage/lcov.info
