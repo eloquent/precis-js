@@ -2,4 +2,7 @@
 set -e
 
 if [ ! -f build/ucd/ucd.zip ]; then bin/fetch-ucd; fi
+
+echo "Extracting UCD"
+
 unzip -o build/ucd/ucd.zip -d build/ucd

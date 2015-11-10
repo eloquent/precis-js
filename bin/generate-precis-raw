@@ -2,5 +2,8 @@
 set -e
 
 if [ ! -f build/ucd/ReadMe.txt ]; then bin/extract-ucd; fi
+
+echo "Running PrecisMaker"
+
 cd build/ucd
 ../../bin/precismaker.py > ../precis.json

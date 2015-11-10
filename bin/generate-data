@@ -2,4 +2,7 @@
 set -e
 
 if [ ! -f build/precis.json ]; then bin/generate-precis-raw; fi
+
+echo "Generating data"
+
 node_modules/.bin/coffee bin/generate-data.coffee

@@ -2,6 +2,7 @@
 
 fs = require 'fs'
 UnicodeTrieBuilder = require 'unicode-trie/builder'
+util = require 'util'
 
 precis = require '../src/constants'
 
@@ -14,12 +15,20 @@ bidiBits = bits Object.keys(precis.BIDI_CLASS).length - 1
 precisShift = bidiBits + 1
 bidiShift = 1
 
+console.log 'Reading PrecisMaker data'
+
 codepoints = require('codepoints/parser') __dirname + '/../build/ucd'
 precisData = JSON.parse fs.readFileSync __dirname + '/../build/precis.json'
 trie = new UnicodeTrieBuilder()
 widthMappings = []
 
-for data in codepoints
+for data, i in codepoints
+    process.stdout.write util.format \
+        "Processing codepoint %d of %d (%d%%)\r",
+        i + 1,
+        codepoints.length,
+        (((i + 1) / codepoints.length) * 100).toFixed()
+
     continue unless data?
 
     precisCategory = precis.PRECIS_CATEGORY[precisData[data.code.toString()]] or 0
@@ -37,5 +46,11 @@ for data in codepoints
 
         widthMappings.push data.code, data.decomposition[0]
 
+console.log '\nCreating trie (can take a LONG time)'
+trie.freeze()
+
+console.log 'Writing trie'
 fs.writeFileSync __dirname + '/../data/properties.trie', trie.toBuffer()
+
+console.log 'Writing width mapping data'
 fs.writeFileSync __dirname + '/../data/width-mapping.json', JSON.stringify widthMappings
