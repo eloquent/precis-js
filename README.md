@@ -6,10 +6,10 @@
 [![Current build status image][build-image]][current build status]
 [![Current coverage status image][coverage-image]][current coverage status]
 
-[build-image]: http://img.shields.io/travis/ezzatron/precis-js/develop.svg?style=flat-square "Current build status for the develop branch"
-[coverage-image]: https://img.shields.io/codecov/c/github/ezzatron/precis-js/develop.svg?style=flat "Current test coverage"
-[current build status]: https://travis-ci.org/ezzatron/precis-js
-[current coverage status]: https://coveralls.io/r/ezzatron/precis-js
+[build-image]: http://img.shields.io/travis/eloquent/precis-js/develop.svg?style=flat-square "Current build status for the develop branch"
+[coverage-image]: https://img.shields.io/codecov/c/github/eloquent/precis-js/develop.svg?style=flat "Current test coverage"
+[current build status]: https://travis-ci.org/eloquent/precis-js
+[current coverage status]: https://coveralls.io/r/eloquent/precis-js
 [semantic versioning]: http://semver.org/
 [version-image]: http://img.shields.io/:semver-0.0.0-red.svg?style=flat-square "This project uses semantic versioning"
 
@@ -186,6 +186,16 @@ The available modules are as follows:
 - The `precis-js/prepare` module includes only the [Preparation] API, and hence
   produces the smallest possible size. Suitable for clients in a typical
   client-server scenario.
+
+## Updating the internal data
+
+To regenerate the *PRECIS-JS* data from the latest Unicode data, run the
+included `scripts/generate-data` script. This will fetch the latest version of
+the [Unicode Character Database], run [PrecisMaker], and convert the data into
+an optimized format.
+
+[precismaker]: https://github.com/stpeter/PrecisMaker
+[unicode character database]: http://unicode.org/ucd/
 
 [enforcement]: #enforcement
 [preparation]: #preparation

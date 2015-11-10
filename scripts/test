@@ -2,5 +2,5 @@
 
 set -e
 
-if [ "$1" = "" ]; then bin/lint; fi
+if [ "$1" = "" ]; then scripts/lint; fi
 node_modules/.bin/mocha "${1-test/suite}"

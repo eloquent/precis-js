@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -e
 
-if [ ! -f build/ucd/ucd.zip ]; then bin/fetch-ucd; fi
+if [ ! -f build/ucd/ucd.zip ]; then scripts/fetch-ucd; fi
 
 echo "Extracting UCD"
 

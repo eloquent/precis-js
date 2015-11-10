@@ -49,6 +49,6 @@
     "uglify-js": "^2.4.23"
   },
   "scripts": {
-    "test": "bin/test"
+    "test": "scripts/test"
   }
 }
