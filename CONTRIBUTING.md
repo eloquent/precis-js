@@ -23,11 +23,11 @@ Yes, I use 4 spaces for CoffeeScript. Yes, I know that's non-standard.
 As a guideline, please follow this process:
 
 1. [Fork the repository].
-2. Create a topic branch for the change, branching from **master**
-(`git checkout -b branch-name master`).
+2. Create a topic branch for the change, branching from **develop**
+(`git checkout -b branch-name develop`).
 3. Make the relevant changes.
-4. [Squash] commits if necessary (`git rebase -i master`).
-5. Submit a pull request to the **master** branch.
+4. [Squash] commits if necessary (`git rebase -i develop`).
+5. Submit a pull request to the **develop** branch.
 
 [Fork the repository]: https://help.github.com/articles/fork-a-repo
 [Squash]: http://git-scm.com/book/en/v2/Git-Tools-Rewriting-History#Changing-Multiple-Commit-Messages

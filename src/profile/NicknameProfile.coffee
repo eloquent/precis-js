@@ -1,21 +1,22 @@
 EmptyStringError = require '../error/EmptyStringError'
-Precis = require '../constants'
+precis = require '../constants'
 
 module.exports = class NicknameProfile
 
-    stringClass: Precis.STRING_CLASS.FREEFORM
-    widthMapping: Precis.WIDTH_MAPPING.NONE
-    caseMapping: Precis.CASE_MAPPING.LOWERCASE
-    normalization: Precis.NORMALIZATION.KC
-    directionality: Precis.DIRECTIONALITY.NONE
+    stringClass: precis.STRING_CLASS.FREEFORM
+    widthMapping: precis.WIDTH_MAPPING.NONE
+    caseMapping: precis.CASE_MAPPING.LOWERCASE
+    normalization: precis.NORMALIZATION.KC
+    directionality: precis.DIRECTIONALITY.NONE
 
-    map: (codepoints, propertyReader) ->
+    map: (codepoints, enforcer) ->
         i = codepoints.length - 1
         last = i
         state = 0
 
         while i >= 0
-            codepoints[i] = 0x20 if propertyReader.isNonAsciiSpace codepoints[i]
+            if enforcer.propertyReader.isNonAsciiSpace codepoints[i]
+                codepoints[i] = 0x20
 
             switch state
                 when 0 # end of string

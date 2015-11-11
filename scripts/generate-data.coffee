@@ -2,28 +2,37 @@
 
 fs = require 'fs'
 UnicodeTrieBuilder = require 'unicode-trie/builder'
+util = require 'util'
 
-Precis = require '../src/constants'
+precis = require '../src/constants'
 
 log2 = Math.log2 or (n) -> Math.log(n) / Math.LN2
 bits = (n) -> (log2(n) + 1) | 0
 
-precisBits = bits Object.keys(Precis.PRECIS_CATEGORY).length - 1
-bidiBits = bits Object.keys(Precis.BIDI_CLASS).length - 1
+precisBits = bits Object.keys(precis.PRECIS_CATEGORY).length - 1
+bidiBits = bits Object.keys(precis.BIDI_CLASS).length - 1
 
 precisShift = bidiBits + 1
 bidiShift = 1
+
+console.log 'Reading PrecisMaker data'
 
 codepoints = require('codepoints/parser') __dirname + '/../build/ucd'
 precisData = JSON.parse fs.readFileSync __dirname + '/../build/precis.json'
 trie = new UnicodeTrieBuilder()
 widthMappings = []
 
-for data in codepoints
+for data, i in codepoints
+    process.stdout.write util.format \
+        "Processing codepoint %d of %d (%d%%)\r",
+        i + 1,
+        codepoints.length,
+        (((i + 1) / codepoints.length) * 100).toFixed()
+
     continue unless data?
 
-    precisCategory = Precis.PRECIS_CATEGORY[precisData[data.code.toString()]] or 0
-    bidiClass = Precis.BIDI_CLASS[data.bidiClass] or 0
+    precisCategory = precis.PRECIS_CATEGORY[precisData[data.code.toString()]] or 0
+    bidiClass = precis.BIDI_CLASS[data.bidiClass] or 0
     nonAsciiSpace = if data.category is 'Zs' and data.code isnt 0x20 then 1 else 0
 
     trie.set data.code,
@@ -37,5 +46,11 @@ for data in codepoints
 
         widthMappings.push data.code, data.decomposition[0]
 
+console.log '\nCreating trie (can take a LONG time)'
+trie.freeze()
+
+console.log 'Writing trie'
 fs.writeFileSync __dirname + '/../data/properties.trie', trie.toBuffer()
+
+console.log 'Writing width mapping data'
 fs.writeFileSync __dirname + '/../data/width-mapping.json', JSON.stringify widthMappings

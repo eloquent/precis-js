@@ -2,17 +2,21 @@ fs = require 'fs'
 UnicodeTrie = require 'unicode-trie'
 
 CodepointPropertyReader = require './unicode/CodepointPropertyReader'
-Precis = require './constants'
+precis = require './constants'
 PrecisEnforcer = require './PrecisEnforcer'
 PrecisPreparer = require './PrecisPreparer'
+WidthMapper = require './unicode/WidthMapper'
 
 trieData = fs.readFileSync __dirname + '/../data/properties.trie'
 trie = new UnicodeTrie trieData
 
 propertyReader = new CodepointPropertyReader trie
-preparer = new PrecisPreparer propertyReader
+widthMappingData =
+    JSON.parse fs.readFileSync __dirname + '/../data/width-mapping.json'
+widthMapper = new WidthMapper widthMappingData
+preparer = new PrecisPreparer propertyReader, widthMapper
 
-module.exports = Precis
+module.exports = precis
 
 module.exports.prepare = preparer.prepare.bind preparer
 
@@ -38,4 +42,4 @@ module.exports.unicode =
     CodepointPropertyReader: CodepointPropertyReader
     DirectionalityValidator: require './unicode/DirectionalityValidator'
     Normalizer: require './unicode/Normalizer'
-    WidthMapper: require './unicode/WidthMapper'
+    WidthMapper: WidthMapper

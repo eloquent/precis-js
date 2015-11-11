@@ -8,7 +8,7 @@ DirectionalityValidator = require '../../src/unicode/DirectionalityValidator'
 InvalidCodepointError = require '../../src/error/InvalidCodepointError'
 InvalidDirectionalityError = require '../../src/error/InvalidDirectionalityError'
 Normalizer = require '../../src/unicode/Normalizer'
-Precis = require '../../src/constants'
+precis = require '../../src/constants'
 PrecisEnforcer = require '../../src/PrecisEnforcer'
 PrecisPreparer = require '../../src/PrecisPreparer'
 WidthMapper = require '../../src/unicode/WidthMapper'
@@ -29,7 +29,7 @@ describe 'PrecisEnforcer', ->
     beforeEach ->
         @subject = new PrecisEnforcer @preparer, @propertyReader, @widthMapper, @normalizer, @directionalityValidator
 
-        @profile = stringClass: Precis.STRING_CLASS.FREEFORM, normalization: Precis.NORMALIZATION.NONE
+        @profile = stringClass: precis.STRING_CLASS.FREEFORM, normalization: precis.NORMALIZATION.NONE
 
     describe 'enforce()', ->
 
@@ -67,7 +67,7 @@ describe 'PrecisEnforcer', ->
         describe 'for FreeformClass string class profiles', ->
 
             beforeEach ->
-                @profile = stringClass: Precis.STRING_CLASS.FREEFORM, normalization: Precis.NORMALIZATION.NONE
+                @profile = stringClass: precis.STRING_CLASS.FREEFORM, normalization: precis.NORMALIZATION.NONE
 
             it 'allows characters in the FreeformClass string class', ->
                 assert.strictEqual @subject.enforce(@profile, ' !'), ' !'
@@ -83,76 +83,80 @@ describe 'PrecisEnforcer', ->
 
             it 'calls the custom mapping callback', ->
                 passedCodepoints = null
-                passedPropertyReader = null
+                passedEnforcer = null
                 @profile =
-                    stringClass: Precis.STRING_CLASS.FREEFORM
-                    normalization: Precis.NORMALIZATION.NONE
-                    map: (codepoints, propertyReader) ->
+                    stringClass: precis.STRING_CLASS.FREEFORM
+                    normalization: precis.NORMALIZATION.NONE
+                    map: (codepoints, enforcer) ->
                         passedCodepoints = codepoints.slice()
-                        passedPropertyReader = propertyReader
+                        passedEnforcer = enforcer
                 @subject.enforce @profile, 'ab'
 
                 assert.deepEqual passedCodepoints, [97, 98]
-                assert.strictEqual passedPropertyReader, @propertyReader
+                assert.strictEqual passedEnforcer, @subject
 
             it 'calls the custom validation callback', ->
                 passedCodepoints = null
+                passedEnforcer = null
                 @profile =
-                    stringClass: Precis.STRING_CLASS.FREEFORM
-                    normalization: Precis.NORMALIZATION.NONE
-                    validate: (codepoints) -> passedCodepoints = codepoints.slice()
+                    stringClass: precis.STRING_CLASS.FREEFORM
+                    normalization: precis.NORMALIZATION.NONE
+                    validate: (codepoints, enforcer) ->
+                        passedCodepoints = codepoints.slice()
+                        passedEnforcer = enforcer
                 @subject.enforce @profile, 'ab'
 
                 assert.deepEqual passedCodepoints, [97, 98]
+                assert.strictEqual passedEnforcer, @subject
 
         describe 'profile width mapping options', ->
 
             it 'supports width mapping', ->
                 @profile =
-                    stringClass: Precis.STRING_CLASS.FREEFORM
-                    normalization: Precis.NORMALIZATION.NONE
-                    widthMapping: Precis.WIDTH_MAPPING.EAW
+                    stringClass: precis.STRING_CLASS.FREEFORM
+                    normalization: precis.NORMALIZATION.NONE
+                    widthMapping: precis.WIDTH_MAPPING.EAW
 
                 assert.strictEqual @subject.enforce(@profile, '\uFF61'), '\u3002'
 
         describe 'profile case mapping options', ->
 
             beforeEach ->
-                @profile = stringClass: Precis.STRING_CLASS.FREEFORM, normalization: Precis.NORMALIZATION.NONE
+                @profile = stringClass: precis.STRING_CLASS.FREEFORM, normalization: precis.NORMALIZATION.NONE
 
             it 'supports lowercase case mapping', ->
-                @profile.caseMapping = Precis.CASE_MAPPING.LOWERCASE
+                @profile.caseMapping = precis.CASE_MAPPING.LOWERCASE
 
                 assert.strictEqual @subject.enforce(@profile, 'Ab\u0370\u0371'), 'ab\u0371\u0371'
 
         describe 'profile normalization options', ->
 
             beforeEach ->
-                @profile = stringClass: Precis.STRING_CLASS.FREEFORM, normalization: Precis.NORMALIZATION.NONE
+                @profile = stringClass: precis.STRING_CLASS.FREEFORM, normalization: precis.NORMALIZATION.NONE
 
             it 'supports NFC normalization', ->
-                @profile.normalization = Precis.NORMALIZATION.C
+                @profile.normalization = precis.NORMALIZATION.C
                 actual = @subject.enforce @profile, '\u00F6\u0307o\u0308\u0307o\u0307\u0308\u2163'
                 expected = '\u00F6\u0307\u00F6\u0307\u022F\u0308\u2163'
 
                 assert.deepEqual ucs2.decode(actual), ucs2.decode(expected)
 
             it 'supports NFD normalization', ->
-                @profile.normalization = Precis.NORMALIZATION.D
+                @profile.normalization = precis.NORMALIZATION.D
                 actual = @subject.enforce @profile, '\u00F6\u0307o\u0308\u0307o\u0307\u0308\u2163'
                 expected = 'o\u0308\u0307o\u0308\u0307o\u0307\u0308\u2163'
 
                 assert.deepEqual ucs2.decode(actual), ucs2.decode(expected)
 
             it 'supports NFKC normalization', ->
-                @profile.normalization = Precis.NORMALIZATION.KC
+                @profile.normalization = precis.NORMALIZATION.KC
                 actual = @subject.enforce @profile, '\u00F6\u0307o\u0308\u0307o\u0307\u0308\u2163'
                 expected = '\u00F6\u0307\u00F6\u0307\u022F\u0308IV'
 
                 assert.deepEqual ucs2.decode(actual), ucs2.decode(expected)
 
             it 'supports NFKD normalization', ->
-                @profile.normalization = Precis.NORMALIZATION.KD
+                @profile.normalization = precis.NORMALIZATION.KD
                 actual = @subject.enforce @profile, '\u00F6\u0307o\u0308\u0307o\u0307\u0308\u2163'
                 expected = 'o\u0308\u0307o\u0308\u0307o\u0307\u0308IV'
 
@@ -162,9 +166,9 @@ describe 'PrecisEnforcer', ->
 
             it 'supports directionality validation', ->
                 @profile =
-                    stringClass: Precis.STRING_CLASS.FREEFORM
-                    normalization: Precis.NORMALIZATION.NONE
-                    directionality: Precis.DIRECTIONALITY.BIDI
+                    stringClass: precis.STRING_CLASS.FREEFORM
+                    normalization: precis.NORMALIZATION.NONE
+                    directionality: precis.DIRECTIONALITY.BIDI
 
                 assert.doesNotThrow => @subject.enforce @profile, 'ab'
                 assert.throws (=> @subject.enforce @profile, '0'), InvalidDirectionalityError

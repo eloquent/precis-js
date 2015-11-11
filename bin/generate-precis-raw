@@ -1,6 +1,0 @@
-#!/usr/bin/env bash
-set -e
-
-if [ ! -f build/ucd/ReadMe.txt ]; then bin/extract-ucd; fi
-cd build/ucd
-../../bin/precismaker.py > ../precis.json

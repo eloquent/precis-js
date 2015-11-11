@@ -2,7 +2,7 @@ fs = require 'fs'
 UnicodeTrie = require 'unicode-trie'
 
 CodepointPropertyReader = require '../../../src/unicode/CodepointPropertyReader'
-Precis = require '../../../src/constants'
+precis = require '../../../src/constants'
 
 describe 'CodepointPropertyReader', ->
 
@@ -16,40 +16,40 @@ describe 'CodepointPropertyReader', ->
     describe 'precisCategory()', ->
 
         it 'returns correct PRECIS categories', ->
-            assert.strictEqual @subject.precisCategory(0x0000), Precis.PRECIS_CATEGORY.DISALLOWED
-            assert.strictEqual @subject.precisCategory(0x0020), Precis.PRECIS_CATEGORY.FREE_PVAL
-            assert.strictEqual @subject.precisCategory(0x0021), Precis.PRECIS_CATEGORY.PVALID
-            assert.strictEqual @subject.precisCategory(0x007F), Precis.PRECIS_CATEGORY.DISALLOWED
-            assert.strictEqual @subject.precisCategory(0x00B7), Precis.PRECIS_CATEGORY.CONTEXTO
-            assert.strictEqual @subject.precisCategory(0x0378), Precis.PRECIS_CATEGORY.UNASSIGNED
-            assert.strictEqual @subject.precisCategory(0x200C), Precis.PRECIS_CATEGORY.CONTEXTJ
+            assert.strictEqual @subject.precisCategory(0x0000), precis.PRECIS_CATEGORY.DISALLOWED
+            assert.strictEqual @subject.precisCategory(0x0020), precis.PRECIS_CATEGORY.FREE_PVAL
+            assert.strictEqual @subject.precisCategory(0x0021), precis.PRECIS_CATEGORY.PVALID
+            assert.strictEqual @subject.precisCategory(0x007F), precis.PRECIS_CATEGORY.DISALLOWED
+            assert.strictEqual @subject.precisCategory(0x00B7), precis.PRECIS_CATEGORY.CONTEXTO
+            assert.strictEqual @subject.precisCategory(0x0378), precis.PRECIS_CATEGORY.UNASSIGNED
+            assert.strictEqual @subject.precisCategory(0x200C), precis.PRECIS_CATEGORY.CONTEXTJ
 
     describe 'bidiClass()', ->
 
         it 'returns correct Bidi classes', ->
-            assert.strictEqual @subject.bidiClass(0x0000), Precis.BIDI_CLASS.BN, 'BN'
-            assert.strictEqual @subject.bidiClass(0x0009), Precis.BIDI_CLASS.OTHER, 'S'
-            assert.strictEqual @subject.bidiClass(0x000A), Precis.BIDI_CLASS.OTHER, 'B'
-            assert.strictEqual @subject.bidiClass(0x000C), Precis.BIDI_CLASS.OTHER, 'WS'
-            assert.strictEqual @subject.bidiClass(0x0021), Precis.BIDI_CLASS.ON, 'ON'
-            assert.strictEqual @subject.bidiClass(0x0023), Precis.BIDI_CLASS.ET, 'ET'
-            assert.strictEqual @subject.bidiClass(0x002B), Precis.BIDI_CLASS.ES, 'ES'
-            assert.strictEqual @subject.bidiClass(0x002C), Precis.BIDI_CLASS.CS, 'CS'
-            assert.strictEqual @subject.bidiClass(0x0030), Precis.BIDI_CLASS.EN, 'EN'
-            assert.strictEqual @subject.bidiClass(0x0041), Precis.BIDI_CLASS.L, 'L'
-            assert.strictEqual @subject.bidiClass(0x0300), Precis.BIDI_CLASS.NSM, 'NSM'
-            assert.strictEqual @subject.bidiClass(0x05BE), Precis.BIDI_CLASS.R, 'R'
-            assert.strictEqual @subject.bidiClass(0x0600), Precis.BIDI_CLASS.AN, 'AN'
-            assert.strictEqual @subject.bidiClass(0x0608), Precis.BIDI_CLASS.AL, 'AL'
-            assert.strictEqual @subject.bidiClass(0x202A), Precis.BIDI_CLASS.OTHER, 'LRE'
-            assert.strictEqual @subject.bidiClass(0x202B), Precis.BIDI_CLASS.OTHER, 'RLE'
-            assert.strictEqual @subject.bidiClass(0x202C), Precis.BIDI_CLASS.OTHER, 'PDF'
-            assert.strictEqual @subject.bidiClass(0x202D), Precis.BIDI_CLASS.OTHER, 'LRO'
-            assert.strictEqual @subject.bidiClass(0x202E), Precis.BIDI_CLASS.OTHER, 'RLO'
-            assert.strictEqual @subject.bidiClass(0x2066), Precis.BIDI_CLASS.OTHER, 'LRI'
-            assert.strictEqual @subject.bidiClass(0x2067), Precis.BIDI_CLASS.OTHER, 'RLI'
-            assert.strictEqual @subject.bidiClass(0x2068), Precis.BIDI_CLASS.OTHER, 'FSI'
-            assert.strictEqual @subject.bidiClass(0x2069), Precis.BIDI_CLASS.OTHER, 'PDI'
+            assert.strictEqual @subject.bidiClass(0x0000), precis.BIDI_CLASS.BN, 'BN'
+            assert.strictEqual @subject.bidiClass(0x0009), precis.BIDI_CLASS.OTHER, 'S'
+            assert.strictEqual @subject.bidiClass(0x000A), precis.BIDI_CLASS.OTHER, 'B'
+            assert.strictEqual @subject.bidiClass(0x000C), precis.BIDI_CLASS.OTHER, 'WS'
+            assert.strictEqual @subject.bidiClass(0x0021), precis.BIDI_CLASS.ON, 'ON'
+            assert.strictEqual @subject.bidiClass(0x0023), precis.BIDI_CLASS.ET, 'ET'
+            assert.strictEqual @subject.bidiClass(0x002B), precis.BIDI_CLASS.ES, 'ES'
+            assert.strictEqual @subject.bidiClass(0x002C), precis.BIDI_CLASS.CS, 'CS'
+            assert.strictEqual @subject.bidiClass(0x0030), precis.BIDI_CLASS.EN, 'EN'
+            assert.strictEqual @subject.bidiClass(0x0041), precis.BIDI_CLASS.L, 'L'
+            assert.strictEqual @subject.bidiClass(0x0300), precis.BIDI_CLASS.NSM, 'NSM'
+            assert.strictEqual @subject.bidiClass(0x05BE), precis.BIDI_CLASS.R, 'R'
+            assert.strictEqual @subject.bidiClass(0x0600), precis.BIDI_CLASS.AN, 'AN'
+            assert.strictEqual @subject.bidiClass(0x0608), precis.BIDI_CLASS.AL, 'AL'
+            assert.strictEqual @subject.bidiClass(0x202A), precis.BIDI_CLASS.OTHER, 'LRE'
+            assert.strictEqual @subject.bidiClass(0x202B), precis.BIDI_CLASS.OTHER, 'RLE'
+            assert.strictEqual @subject.bidiClass(0x202C), precis.BIDI_CLASS.OTHER, 'PDF'
+            assert.strictEqual @subject.bidiClass(0x202D), precis.BIDI_CLASS.OTHER, 'LRO'
+            assert.strictEqual @subject.bidiClass(0x202E), precis.BIDI_CLASS.OTHER, 'RLO'
+            assert.strictEqual @subject.bidiClass(0x2066), precis.BIDI_CLASS.OTHER, 'LRI'
+            assert.strictEqual @subject.bidiClass(0x2067), precis.BIDI_CLASS.OTHER, 'RLI'
+            assert.strictEqual @subject.bidiClass(0x2068), precis.BIDI_CLASS.OTHER, 'FSI'
+            assert.strictEqual @subject.bidiClass(0x2069), precis.BIDI_CLASS.OTHER, 'PDI'
 
     describe 'isNonAsciiSpace()', ->
 

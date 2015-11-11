@@ -1,5 +1,0 @@
-#!/usr/bin/env bash
-set -e
-
-if [ ! -f build/ucd/ucd.zip ]; then bin/fetch-ucd; fi
-unzip -o build/ucd/ucd.zip -d build/ucd

@@ -1,7 +1,7 @@
 {ucs2} = require 'punycode'
 
 Normalizer = require '../../../src/unicode/Normalizer'
-Precis = require '../../../src/constants'
+precis = require '../../../src/constants'
 
 describe 'Normalizer', ->
 
@@ -18,7 +18,7 @@ describe 'Normalizer', ->
         delete String.prototype.normalize
         @subject = new Normalizer()
 
-        assert.throws (=> @subject.normalize Precis.NORMALIZATION.C, @codepoints.slice()),
+        assert.throws (=> @subject.normalize precis.NORMALIZATION.C, @codepoints.slice()),
             'No Unicode normalizer available.'
 
     describe 'with ES6', ->
@@ -31,27 +31,27 @@ describe 'Normalizer', ->
         describe 'normalize()', ->
 
             it 'supports NONE normalization', ->
-                actual = @subject.normalize Precis.NORMALIZATION.NONE, @codepoints.slice()
+                actual = @subject.normalize precis.NORMALIZATION.NONE, @codepoints.slice()
 
                 assert.deepEqual actual, @codepoints
 
             it 'supports C normalization', ->
-                actual = @subject.normalize Precis.NORMALIZATION.C, @codepoints.slice()
+                actual = @subject.normalize precis.NORMALIZATION.C, @codepoints.slice()
 
                 assert.deepEqual actual, ucs2.decode 'abNFC'
 
             it 'supports D normalization', ->
-                actual = @subject.normalize Precis.NORMALIZATION.D, @codepoints.slice()
+                actual = @subject.normalize precis.NORMALIZATION.D, @codepoints.slice()
 
                 assert.deepEqual actual, ucs2.decode 'abNFD'
 
             it 'supports KC normalization', ->
-                actual = @subject.normalize Precis.NORMALIZATION.KC, @codepoints.slice()
+                actual = @subject.normalize precis.NORMALIZATION.KC, @codepoints.slice()
 
                 assert.deepEqual actual, ucs2.decode 'abNFKC'
 
             it 'supports KD normalization', ->
-                actual = @subject.normalize Precis.NORMALIZATION.KD, @codepoints.slice()
+                actual = @subject.normalize precis.NORMALIZATION.KD, @codepoints.slice()
 
                 assert.deepEqual actual, ucs2.decode 'abNFKD'
 
@@ -68,31 +68,31 @@ describe 'Normalizer', ->
         describe 'normalize()', ->
 
             it 'supports NONE normalization', ->
-                actual = @subject.normalize Precis.NORMALIZATION.NONE, @codepoints.slice()
+                actual = @subject.normalize precis.NORMALIZATION.NONE, @codepoints.slice()
 
                 assert.deepEqual actual, @codepoints
 
             it 'supports C normalization', ->
                 @unorm.nfc.returns 'cd'
-                actual = @subject.normalize Precis.NORMALIZATION.C, @codepoints.slice()
+                actual = @subject.normalize precis.NORMALIZATION.C, @codepoints.slice()
 
                 assert.deepEqual actual, [99, 100]
 
             it 'supports D normalization', ->
                 @unorm.nfd.returns 'cd'
-                actual = @subject.normalize Precis.NORMALIZATION.D, @codepoints.slice()
+                actual = @subject.normalize precis.NORMALIZATION.D, @codepoints.slice()
 
                 assert.deepEqual actual, [99, 100]
 
             it 'supports KC normalization', ->
                 @unorm.nfkc.returns 'cd'
-                actual = @subject.normalize Precis.NORMALIZATION.KC, @codepoints.slice()
+                actual = @subject.normalize precis.NORMALIZATION.KC, @codepoints.slice()
 
                 assert.deepEqual actual, [99, 100]
 
             it 'supports KD normalization', ->
                 @unorm.nfkd.returns 'cd'
-                actual = @subject.normalize Precis.NORMALIZATION.KD, @codepoints.slice()
+                actual = @subject.normalize precis.NORMALIZATION.KD, @codepoints.slice()
 
                 assert.deepEqual actual, [99, 100]
 

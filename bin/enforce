@@ -1,8 +1,0 @@
-#!/usr/bin/env coffee
-
-Precis = require '../src/enforce'
-{NicknameProfile} = Precis.profile
-
-profile = new NicknameProfile()
-
-console.log Precis.enforce profile, process.argv[2]

@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+set -e
+
+if [ ! -f build/ucd/ucd.zip ]; then scripts/fetch-ucd; fi
+
+echo "Extracting UCD"
+
+unzip -o build/ucd/ucd.zip -d build/ucd

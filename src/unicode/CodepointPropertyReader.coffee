@@ -1,11 +1,11 @@
-Precis = require '../constants'
+precis = require '../constants'
 
 ### !pragma coverage-skip-next ###
 log2 = Math.log2 or (n) -> Math.log(n) / Math.LN2
 bits = (n) -> (log2(n) + 1) | 0
 
-precisBits = bits Object.keys(Precis.PRECIS_CATEGORY).length - 1
-bidiBits = bits Object.keys(Precis.BIDI_CLASS).length - 1
+precisBits = bits Object.keys(precis.PRECIS_CATEGORY).length - 1
+bidiBits = bits Object.keys(precis.BIDI_CLASS).length - 1
 
 precisShift = bidiBits + 1
 bidiShift = 1

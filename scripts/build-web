@@ -2,6 +2,8 @@
 
 set -e
 
+mkdir -p build
+
 node_modules/.bin/browserify --full-paths --extension .coffee -t coffeeify -t brfs src/prepare.coffee > build/precis.prepare.js
 node_modules/.bin/uglifyjs build/precis.prepare.js > build/precis.prepare.min.js
 node_modules/.bin/discify build/precis.prepare.js > build/precis.prepare.disc.html

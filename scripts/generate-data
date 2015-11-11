@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+set -e
+
+if [ ! -f build/precis.json ]; then scripts/generate-precis-raw; fi
+
+echo "Generating data"
+
+node_modules/.bin/coffee scripts/generate-data.coffee

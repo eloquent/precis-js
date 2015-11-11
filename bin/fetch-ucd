@@ -1,6 +1,0 @@
-#!/usr/bin/env bash
-set -e
-
-mkdir -p build/ucd
-# curl -L http://www.unicode.org/Public/UCD/latest/ucd/UCD.zip -o build/ucd/ucd.zip
-curl -L http://www.unicode.org/Public/7.0.0/ucd/UCD.zip -o build/ucd/ucd.zip
