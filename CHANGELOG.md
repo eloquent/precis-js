@@ -1,5 +1,9 @@
 # PRECIS-JS changelog
 
+## 0.1.2 (2015-11-11)
+
+- **[FIXED]** Fixed NPM configuration.
+
 ## 0.1.1 (2015-11-11)
 
 - **[FIXED]** Fixed NPM version.
