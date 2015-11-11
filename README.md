@@ -2,7 +2,7 @@
 
 *A JavaScript implementation of RFC 7564 (The PRECIS Framework).*
 
-[![The most recent stable version is 0.1.3][version-image]][semantic versioning]
+[![The most recent stable version is 0.1.4][version-image]][semantic versioning]
 [![Current build status image][build-image]][current build status]
 [![Current coverage status image][coverage-image]][current coverage status]
 
@@ -11,7 +11,7 @@
 [current build status]: https://travis-ci.org/eloquent/precis-js
 [current coverage status]: https://codecov.io/github/eloquent/precis-js
 [semantic versioning]: http://semver.org/
-[version-image]: http://img.shields.io/:semver-0.1.3-yellow.svg?style=flat-square "This project uses semantic versioning"
+[version-image]: http://img.shields.io/:semver-0.1.4-yellow.svg?style=flat-square "This project uses semantic versioning"
 
 ## Installation
 
@@ -163,7 +163,7 @@ module. These are useful when code size is an issue, such as in a browser.
 
 When using *PRECIS-JS*, the primary contributor to code size is the Unicode data
 that must be included to implement the various algorithms of PRECIS. The data
-used directly by PRECIS constitutes approximately **12KB**. There is no way to
+used directly by PRECIS constitutes approximately **7KB**. There is no way to
 avoid including this data.
 
 In addition, unless the ECMAScript 6 [String.prototype.normalize] function is

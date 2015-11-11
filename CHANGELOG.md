@@ -1,5 +1,11 @@
 # PRECIS-JS changelog
 
+## 0.1.4 (2015-11-11)
+
+- **[FIXED]** Rebuilt with [devongovett/unicode-trie#2].
+
+[devongovett/unicode-trie#2]: https://github.com/devongovett/unicode-trie/issues/2
+
 ## 0.1.3 (2015-11-11)
 
 - **[FIXED]** Fixed NPM configuration.
