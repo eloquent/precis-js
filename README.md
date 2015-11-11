@@ -13,7 +13,6 @@
 [semantic versioning]: http://semver.org/
 [version-image]: http://img.shields.io/:semver-0.1.2-yellow.svg?style=flat-square "This project uses semantic versioning"
 
-<!--
 ## Installation
 
 Available as [NPM] package [precis-js]:
@@ -24,7 +23,6 @@ npm install --save precis-js
 
 [npm]: http://npmjs.org/
 [precis-js]: https://www.npmjs.com/package/precis-js
--->
 
 ## What is PRECIS?
 
