@@ -46,9 +46,6 @@ for data, i in codepoints
 
         widthMappings.push data.code, data.decomposition[0]
 
-console.log '\nCreating trie (can take a LONG time)'
-trie.freeze()
-
 console.log 'Writing trie'
 fs.writeFileSync __dirname + '/../data/properties.trie', trie.toBuffer()
 

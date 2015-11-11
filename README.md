@@ -163,7 +163,7 @@ module. These are useful when code size is an issue, such as in a browser.
 
 When using *PRECIS-JS*, the primary contributor to code size is the Unicode data
 that must be included to implement the various algorithms of PRECIS. The data
-used directly by PRECIS constitutes approximately **12KB**. There is no way to
+used directly by PRECIS constitutes approximately **7KB**. There is no way to
 avoid including this data.
 
 In addition, unless the ECMAScript 6 [String.prototype.normalize] function is
