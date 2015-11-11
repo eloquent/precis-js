@@ -12,9 +12,9 @@
     "password",
     "nickname"
   ],
-  "homepage": "https://github.com/ezzatron/precis-js",
-  "bugs": "https://github.com/ezzatron/precis-js/issues",
-  "repository": "ezzatron/precis-js.git",
+  "homepage": "https://github.com/eloquent/precis-js",
+  "bugs": "https://github.com/eloquent/precis-js/issues",
+  "repository": "eloquent/precis-js",
   "license": "MIT",
   "author": {
     "name": "Erin Millard",
