@@ -9,7 +9,7 @@
 [build-image]: http://img.shields.io/travis/eloquent/precis-js/develop.svg?style=flat-square "Current build status for the develop branch"
 [coverage-image]: https://img.shields.io/codecov/c/github/eloquent/precis-js/develop.svg?style=flat "Current test coverage"
 [current build status]: https://travis-ci.org/eloquent/precis-js
-[current coverage status]: https://coveralls.io/r/eloquent/precis-js
+[current coverage status]: https://codecov.io/github/eloquent/precis-js
 [semantic versioning]: http://semver.org/
 [version-image]: http://img.shields.io/:semver-0.0.0-red.svg?style=flat-square "This project uses semantic versioning"
 
