@@ -1,6 +1,6 @@
 {
   "name": "precis-js",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "A JavaScript implementation of RFC 7564 (The PRECIS Framework).",
   "keywords": [
     "precis",

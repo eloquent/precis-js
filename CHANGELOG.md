@@ -1,6 +1,6 @@
 # PRECIS-JS changelog
 
-## Next release
+## 0.1.3 (2015-11-11)
 
 - **[FIXED]** Fixed NPM configuration.
 - **[IMPROVED]** Added NPM installation instructions to readme.
