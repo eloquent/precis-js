@@ -2,16 +2,16 @@
 
 *A JavaScript implementation of RFC 7564 (The PRECIS Framework).*
 
-[![The most recent stable version is 0.1.4][version-image]][semantic versioning]
+[![Current version image][version-image]][current version]
 [![Current build status image][build-image]][current build status]
 [![Current coverage status image][coverage-image]][current coverage status]
 
 [build-image]: http://img.shields.io/travis/eloquent/precis-js/develop.svg?style=flat-square "Current build status for the develop branch"
-[coverage-image]: https://img.shields.io/codecov/c/github/eloquent/precis-js/develop.svg?style=flat "Current test coverage"
+[coverage-image]: https://img.shields.io/codecov/c/github/eloquent/precis-js/develop.svg?style=flat-square "Current test coverage for the develop branch"
 [current build status]: https://travis-ci.org/eloquent/precis-js
 [current coverage status]: https://codecov.io/github/eloquent/precis-js
-[semantic versioning]: http://semver.org/
-[version-image]: http://img.shields.io/:semver-0.1.4-yellow.svg?style=flat-square "This project uses semantic versioning"
+[current version]: https://www.npmjs.com/package/precis-js
+[version-image]: https://img.shields.io/npm/v/precis-js.svg?style=flat-square "This project uses semantic versioning"
 
 ## Installation
 
