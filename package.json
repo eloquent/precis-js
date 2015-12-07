@@ -27,7 +27,7 @@
     "npm": ">= 1.0.0"
   },
   "browserify": {
-    "transform": [ "brfs" ]
+    "transform": ["brfs"]
   },
   "dependencies": {
     "unicode-trie": "^0.3.1"
